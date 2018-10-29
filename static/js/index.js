@@ -121,13 +121,13 @@ $(function(){
 
 
 	//获取json数据
-	$.get("json/index.json",function(data){
+	$.get("static/json/index.json",function(data){
 		//将数据显示页面上
 			//遍历 获取相对应的数据		
 			//轮播
 			for (var i=0;i<data.lunbo.length;i++) {				
 				var obj1 = data.lunbo[i];
-				var img1 = obj1.img;
+				var img1 = "static/"+ obj1.img;
 				var id1= obj1.id;
 				
 				//创建li节点  ，并添加到列表上
@@ -144,7 +144,7 @@ $(function(){
 		//今日团    列表动态添加
 		for (var i=0;i<data.list.length;i++) {
 			var obj2 = data.list[i];
-			var src2 = obj2.img;
+			var src2 = "static/"+ obj2.img;
 			var id2 = obj2.id;
 //			console.log(id2);
 			
