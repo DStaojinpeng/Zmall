@@ -1,0 +1,384 @@
+*{
+	margin: 0;
+	padding: 0;
+	list-style: none;
+	text-decoration: none;
+	font-family: "微软雅黑";
+	outline: none;
+	
+}
+body{
+	min-width: 1263px;
+}
+.top{
+	width: 80%;
+	margin: 20px auto;
+	overflow: hidden;
+	
+		
+}
+.top .logo{
+	width: 800px;
+	height: 60px;
+	font-size: 14px;
+	color: #999;
+	/*text-align: center;*/
+	line-height: 60px;
+	float: left;
+}
+.top .logo img{
+	border-right: 1px solid #EFEFEF;
+	padding-right: 10px;
+	margin-right: 10px;
+	float: left;
+}
+.top .logo p{
+	float: left;
+	/*padding-left: 10px;*/
+}
+.top .tishi{
+	float: left;
+	font-size: 14px;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	/*font-family: "微软雅黑";*/
+}
+.top .tishi a{
+	color: #c00;
+}
+
+
+/*     内容        */
+.content{
+	width: 80%;
+	margin: 0 auto;
+	overflow: hidden;
+
+	margin-top: 30px;
+	border: 1px solid #E6E6E6;
+	
+	/*margin-left: 100px;*/
+}
+.content .title {
+	background: #FAFAFA;
+	margin-bottom: 30px;
+}
+.content .title p{
+	height: 60px;
+	color: #999;
+	line-height: 60px;
+	font-size:20px ;
+	margin-left: 100px;
+}
+
+
+
+/*   注册*/
+.content .zhuce{
+	padding-left: 80px;
+	width: 590px;
+	float: left;
+	padding-bottom: 80px;
+}
+.content .zhuce .list{
+	width: 500px;
+	overflow: hidden;
+	margin-bottom: 30px;	
+}
+.content .zhuce .list li{
+	float: left;
+	width: 248px;
+	height: 38px;
+	text-align: center;
+	line-height: 38px;
+	color: #c00;
+	font-size: 18px;
+}
+.content .zhuce .list li:first-child{
+	
+	border-top: 2px solid #c00;
+	border-left: 1px solid #E6E6E6;
+	border-right: 1px solid #E6E6E6;
+	/*border: 1px solid #E6E6E6;*/
+	overflow: hidden;
+}
+.content .zhuce .list li:last-child{
+	border-bottom: 1px solid #E6E6E6;
+	
+}
+.content .zhuce .list li i{
+	display: inline-block;
+	width: 30px;
+	height: 30px;
+	    vertical-align: top;
+	background: url(../img/register/login-bg.png) no-repeat -147px -235px;
+	
+}
+.content .zhuce .xinxi{
+	width: 500px;
+	/*float: left;*/
+	margin-top: 10px;
+	position: relative;
+	
+}
+
+.content .zhuce .xinxi label{
+	display: inline-block;
+	color: #666;
+	font-size: 14px;
+	width: 83px;
+	height: 40px;
+	line-height: 40px;
+	text-align: right;
+	/*float: right;*/
+}
+.content .zhuce .xinxi label i{
+	color: #f30;
+	display: inline-block;
+	margin-right: 8px;
+	/*float: right;*/
+}
+.content .zhuce .xinxi .num{
+	width: 290px;
+	height: 36px;
+}
+.content .zhuce .xinxi .code{
+	width: 150px;
+	height: 36px;
+}
+.content .zhuce .xinxi .code1{
+	width: 100px;
+	height: 38px;
+	
+	position: absolute;
+	right: 145px;
+	top: 0;
+	/*display: inline-block;*/
+	/*margin-top: 10px;*/
+}
+#codeOne{
+	border: 1px solid #666;
+	background: url(../img/register/6062547_081856296000_2.jpg)no-repeat;
+	background-position:-276px -186px ;
+	line-height:40px;
+	text-align: center;
+	font-size: 20px;
+	color: #c40;
+	font-style: oblique;
+	
+}
+.aStyle1{
+	text-decoration: underline;
+	color: #C30;
+}
+#codeTwo{
+	background: #F2F2F2;
+	border: 1px solid #999;
+	font-size: 12px;
+	color: #999;
+	text-align: center;
+	line-height: 38px;
+}
+.content .zhuce .xinxi {
+	position: relative;
+}
+.content .zhuce .xinxi a{
+	font-style: normal;
+	display: inline-block;
+	margin-left: 120px;
+	font-size: 12px;
+	/*color: #666;*/
+}
+
+.content .zhuce .xinxi .tishi{
+	/*display: none;*/
+	position: absolute;
+	top: 0;
+	left: 390px;
+	padding: 0 0 0 20px;
+	font: 12px/40px "Arial";
+	color: #ff3333;	
+	white-space: nowrap;
+}
+/*第一个验证码的正确提示*/
+.content .zhuce .xinxi .tishi .correct_tip{
+	/*display: none;*/
+	/*display: inline-block;*/
+	margin-right: 5px;
+	width: 16px;
+	height: 15px;
+	background: url(../img/register/login-bg.png);
+	background-position: -154px -162px;
+	vertical-align: sub;
+}
+.correct_tip{
+	/*display: none;*/
+	/*display: inline-block;*/
+	margin-right: 5px;
+	width: 16px;
+	height: 15px;
+	background: url(../img/register/login-bg.png);
+	background-position: -154px -162px;
+	vertical-align: sub;
+}
+/*第一个验证码的错误提示*/
+.content .zhuce .xinxi .tishi .error_tip{
+	/*display: none;*/
+	/*display: inline-block;*/
+	margin-right: 5px;
+	width: 16px;
+	height: 15px;
+	background: url(../img/register/login-bg.png);
+	background-position: -155px -196px;
+	vertical-align: sub;
+}
+.error_tip{
+	/*display: none;*/
+	/*display: inline-block;*/
+	margin-right: 5px;
+	width: 16px;
+	height: 15px;
+	background: url(../img/register/login-bg.png);
+	background-position: -155px -196px;
+	vertical-align: sub;
+}
+.content .zhuce .xinxi .tipNode{
+	display: none;
+	position: absolute;
+	top: 0;
+	left: 380px;
+	padding: 0 0 0 20px;
+	font: 12px/40px "Arial";
+	color: #ff3333;	
+	white-space: nowrap;
+	
+}
+.wrong_tip{
+	display: inline-block;
+	margin-right: 5px;
+	width: 16px;
+	height: 15px;
+	background: url(../img/register/login-bg.png);
+	background-position: -155px -196px;
+	vertical-align: sub;
+}
+
+.content .zhuce .xinxi p{
+	font-size: 12px;
+	color: #666;
+	margin-left: 88px;
+    line-height: 2.5em;
+    color: #999;
+}
+.zhuceBtn{
+	width: 500px;
+	height: 100px;
+	font-size: 12px;
+	color: #999;
+	text-align: center;
+	margin-top: 30px;
+}
+#btn{
+	border: none;
+	width: 290px;
+	height: 40px;
+	background: #c00;
+	color: #FFf;
+	font-size: 14px;
+	margin-top: 30px;
+}
+#btn:hover{
+	cursor: pointer;
+}
+/*注册连接*/
+.lianjie{
+	width: 170px;
+	height: 300px;
+	float: right;
+	margin-right: 80px;
+	color: #666;
+	font-size: 12px;
+	line-height: 1.5em;
+	padding: 0 40px;	
+	border-left: 1px solid #E6E6E6;
+}
+.lianjie p{
+	margin-bottom: 20px;
+	
+}
+.lianjie p a{
+	color: #000080;
+}
+.lianjie p a:hover{
+	color: #c30;
+}
+
+.lianjie .a1{
+	display: block;
+	width: 170px;
+	height: 36px;
+	background: url(../img/register/weixin.png) no-repeat;
+	margin: 15px 0;
+}
+.lianjie .a2{
+	display: block;
+	width: 170px;
+	height: 36px;
+	background: url(../img/register/login-bg.png) no-repeat 0 0;
+	margin: 10px 0;
+}
+.lianjie .a3{
+	display: block;
+	width: 170px;
+	height: 36px;
+	background: url(../img/register/login-bg.png) no-repeat 0 -36px;
+	margin: 10px 0;
+}
+.lianjie .a4{
+	display: block;
+	width: 170px;
+	height: 36px;
+	background: url(../img/register/login-bg.png) no-repeat 0 -74px;
+	margin: 10px 0;
+}
+.lianjie .a5{
+	display: block;
+	width: 170px;
+	height: 36px;
+	background: url(../img/register/login-bg.png) no-repeat 0 -110px;
+	margin: 10px 0;
+}
+
+
+/*footer*/
+.footer{
+	border-top: 1px solid #E6E6E6;
+	margin-top: 50px;
+	color: #666;
+	font-size: 12px;
+	height: 60px;
+}
+.footer ul{
+	margin-left: 10%;
+	padding-top: 20px;
+
+	
+}
+.footer ul li{
+	float: left;
+	border-right: 1px solid #E6E6E6;
+	padding: 0px 10px;
+}
+.footer ul li:hover{
+	text-decoration: underline;
+	color: #c00;
+}
+.footer ul li:last-child{
+	border-right:none
+}
+.footer span{
+	display:inline-block;
+	float: right;
+	margin-right: 10%;
+}

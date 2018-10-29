@@ -1,0 +1,214 @@
+*{
+	margin: 0;
+	padding: 0;
+	text-decoration: none;
+	font-family: "微软雅黑";
+	list-style: none;
+	/*outline:none;*/
+	/*outline-color: #c30;*/
+	
+}
+body{
+	background: #FAFAFA;
+	min-width: 1263px;
+}
+
+/*头部*/
+.top{
+	width: 80%;
+	margin: 20px auto;
+	overflow: hidden;
+}
+.top .logo{
+	width: 800px;
+	height: 60px;
+	font-size: 14px;
+	color: #999;
+	/*text-align: center;*/
+	line-height: 60px;
+	float: left;
+}
+.logo img{
+	border-right: 1px solid #EFEFEF;
+	padding-right: 10px;
+	margin-right: 10px;
+	float: left;
+}
+.logo p{
+	float: left;
+	/*padding-left: 10px;*/
+}
+.tishi{
+	float: right;
+	font-size: 14px;
+	height: 60px;
+	line-height: 60px;
+	text-align: center;
+	/*font-family: "微软雅黑";*/
+}
+.tishi a{
+	color: #c00;
+}
+
+/*内容*/
+.content{
+	width: 80%;
+	margin: 50px auto;
+	overflow: hidden;
+	color: #666;
+	background: #FFF;
+	
+}
+.content img{
+	float: left;
+}
+.content .form{
+	width: 300px;
+	float: left;
+	padding: 20px 0 20px 80px;;
+}
+.content .form h3{
+	font-weight:400 ;
+	font-size: 18px;
+	margin-bottom: 20px;
+	display: block;
+	float: left;
+}
+.content .form span{
+	display: block;
+	float: right;
+	font-size: 12px;
+	margin-top: 10px;
+}
+.content .form span i{
+	width: 20px;
+	height: 20px;
+	display: inline-block;
+	
+	background: url(../img/login/shop_login_bg.png)no-repeat;
+	background-position: -276px -114px;
+	    vertical-align: bottom;
+}
+/*.content .form div{
+	width: 290px;
+	height: 40px;
+	margin-bottom: 10px;
+	
+}*/
+.content .form  input{
+	width: 290px;
+	height: 38px;
+	margin-bottom: 10px;
+	
+	
+}
+.content .form a{
+	display: inline-block;
+	float: right;
+	font-size: 12px;
+	margin-bottom: 20px;
+}
+#btnLogin{
+	color: #FFf;
+	font-size: 16px;
+	border: none;
+	background: url(../img/login/bg.png)no-repeat 0 0;
+}
+#btnLogin:hover{
+	cursor: pointer;
+}
+.content .form .coop{
+	font-size: 12px;
+	color: #999999;
+	text-align: center;
+	margin-bottom:10px;
+}
+.content .form .coop div{
+	margin-top: 10px;
+	width: 100px;
+	border-bottom: 1px solid #E6E6E6;
+}
+.content .form .coop .leftL{
+	float: left;
+}
+.content .form .coop .rightR{
+	float: right;
+}
+.content .form .tipS{
+	padding-left: 20px;
+}
+.content .form .tipS li{
+	float: left;
+	width: 40px;
+    height: 38px;
+    margin-right: 10px;
+}
+/*微信小图标*/
+.content .form .tipS .weixin{
+	background: url(../img/login/bgs2.png)no-repeat;
+}
+.content .form .tipS .weixin:hover{
+	background: url(../img/login/bgs2.png)no-repeat 0 -37px;
+}
+/*微博小图标*/
+.content .form .tipS .weibo{
+	background: url(../img/login/bg.png) no-repeat 0 -82px;
+}
+.content .form .tipS .weibo:hover{
+	background: url(../img/login/bg.png) no-repeat 2px -120px;
+}
+
+.content .form .tipS .qq{
+	background: url(../img/login/bg.png) no-repeat -40px -82px;
+}
+.content .form .tipS .qq:hover{
+	background: url(../img/login/bg.png) no-repeat -38px -120px;
+}
+
+.content .form .tipS .zhifubao{
+	background: url(../img/login/bg.png) no-repeat -77px -82px;
+}
+.content .form .tipS .zhifubao:hover{
+	background: url(../img/login/bg.png) no-repeat -77px -120px;
+}
+
+
+.content .form .tipS .baidu{
+	background: url(../img/login/bg.png) no-repeat -117px -82px;
+}
+.content .form .tipS .baidu:hover{
+	background: url(../img/login/bg.png) no-repeat -117px -120px;
+}
+
+/*脚部*/
+
+.footer{
+	border-top: 1px solid #E6E6E6;
+	margin-top: 50px;
+	color: #666;
+	font-size: 12px;
+	height: 60px;
+}
+.footer ul{
+	margin-left: 10%;
+	padding-top: 20px;
+
+	
+}
+.footer ul li{
+	float: left;
+	border-right: 1px solid #E6E6E6;
+	padding: 0px 10px;
+}
+.footer ul li:hover{
+	text-decoration: underline;
+	color: #c00;
+}
+.footer ul li:last-child{
+	border-right:none
+}
+.footer span{
+	display:inline-block;
+	float: right;
+	margin-right: 10%;
+}

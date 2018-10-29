@@ -1,0 +1,77 @@
+{	
+	
+	"Zadv":[
+		{
+			"id":1,
+			"img":"img/product/koubei.jpg"
+		},
+		{
+			"id":2,
+			"img":"img/product/baozheng.jpg"
+		},
+		{
+			"id":3,
+			"img":"img/product/shouhou.jpg"
+		},
+		{
+			"id":4,
+			"img":"img/product/fazhan.jpg"
+		}
+	
+	
+	],
+	"conetC":[
+		{
+			"id":1,
+			"img":"img/product/xin/ChMkJlfs2uyIMWG5AABRy2RJ4DwAAWdsQFcY1sAAFHj923.jpg",
+			"title":"nubia Z11 （高配版） 双色可选 限量开团！",
+			"price":2899,
+			"pPrice":3375,
+			"num":153
+		},
+		{
+			"id":2,
+			"img":"img/product/xin/ChMkJ1ePTXyIJZXbAADA34IN4X4AATq0QBqBZgAAMD3230.jpg",
+			"title":"苹果 iPhone 4S（8GB）限量现货 团购抄底",
+			"price":599,
+			"pPrice":679,
+			"num":158
+			
+		},
+		{
+			"id":3,
+			"img":"img/product/xin/ChMkJ1e1eDaISTiiAABVoOzbrz4AAUihgKhmIYAAFW4435.jpg",
+			"title":"OPPO R9（全网通）vooc闪充 好价开团！",
+			"price":2249,
+			"pPrice":2299,
+			"num":228,
+			"title":"ZUK Z2（全网通） 4GB+64GB 团购限量新低！"
+		},
+		{
+			"id":4,
+			"img":"img/product/xin/ChMkJlfPx-mIUHNSAABGfxNlfQAAAVFzAOjs7EAAEaX638.jpg",
+			"title":"ZUK Z2（全网通） 4GB+64GB 团购限量新低！",
+			"price":2499,
+			"pPrice":2675,
+			"num":153
+			
+		}	
+	],
+	"prokoubei":[
+		{
+			"user":"龍騰浩少",
+			"koubei":"性能给力，运行各类游戏基本无卡顿，多任务流畅，内存占比我使用中最高到达56%，内存基本用不完，不用担心多开问题"
+		
+		},
+		{
+			"user":"酔淝渔",
+			"koubei":"整体来说做工相当不错，在手里的 感觉相当爽，感觉就像握着女朋友的手。"
+		},
+		{
+			"user":"heifei",
+			"koubei":"有点太多了 ，快速充电，手感不错 性能强大。"
+		}
+	]	
+}
+
+

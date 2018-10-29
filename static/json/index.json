@@ -1,0 +1,307 @@
+{
+	"lunbo":[
+		{
+		"id":1,
+		"img":"img/content_display/lunbo1.jpg"
+		},
+		{
+			"id":2,
+			"img":"img/content_display/lunbo2.jpg"
+		},
+		{
+			"id":3,
+			"img":"img/content_display/lunbo3.jpg"
+		}],
+	"list":[
+		{	
+			"id":1,
+			"img":"img/group/list01.jpg",			
+			"title":"一加手机3（6GB+64GB/全网通）现货！",
+			"discribe":"DASH闪充，骁龙820，6GB+64GB,美拍，0.2S指纹识别，EIS电子防抖",
+			"price":"￥2888",
+			"pPrice":"￥3159",
+			"sale":"9.1折",
+			"person":8881
+					
+		
+		},
+		{
+			"id":2,
+			"img":"img/group/list02.jpg",
+			"title":"乐视 乐2（全网通16G） 金色 原力金限时抢",
+			"discribe":"现货顺丰速发 5.5英寸屏指纹识别3G运存1600像素 红外遥控器 3000毫安电池",
+			"price":"￥885",
+			"pPrice":"￥1099",
+			"sale":"8.1折",
+			"person":8823	
+		
+		},
+		{
+			"id":3,
+			"img":"img/group/list03.jpg",			
+			"title":"苹果 iPhone 4S（8GB）现货速发 团购抄底！",
+			"discribe":"3.5英寸屏幕单手操作经典，支持Siri语音功能",
+			"price":"￥599",
+			"pPrice":"￥679",
+			"sale":"8.8折",
+			"person":842
+		
+		},
+		{		
+			"id":4,
+			"img":"img/group/list04.jpg",
+			"title":"国产良机！神舟 战神 K610D i7四核+2G独显",
+			"discribe":"15.6英寸1080P高清屏，酷睿i7 4710MQ四核，GT940M+HD 4600双显卡，4GB内存+500GB硬盘",
+			"price":"￥3399",
+			"pPrice":"￥3779",
+			"sale":"8.9折",
+			"person":5681
+		
+		},
+		{
+			"id":5,
+			"img":"img/group/list05.jpg",
+			"title":"戴尔燃7000 7560-1545S 微边框笔记本 小XPS",
+			"discribe":"强悍第七代酷睿i5-7200U，4GB独显，128G+500G混合硬盘；15.6英寸1080P，微边框，炫薄金属机身",
+			"price":"￥4999",
+			"pPrice":"￥5699",
+			"sale":"8.8折",
+			"person":1
+		
+		},
+		{
+			"id":6,
+			"img":"img/group/list06.jpg",
+			"title":"联想IdeaPad300-15 i5-6200U 2G独显 DVD",
+			"discribe":"纤薄不失强悍！轻薄设计，酷睿i5 6200U，2GB独显；4G内存（可扩展），DVD刻录机",
+			"price":"￥3399",
+			"pPrice":"￥3999",
+			"sale":"8.5折",
+			"person":82181
+		
+		},
+		{
+			"id":7,
+			"img":"img/group/list07.jpg",
+			"title":"尼康D3300单反相机 AF-P18-55mm套机",
+			"discribe":"2416万有效像素，EXPEED 4图像处理器，约5幅/秒的高速连拍，具备引导说明模式，碳纤维机身，坚固耐用",
+			"price":"￥2399",
+			"pPrice":"￥2598",
+			"sale":"9.2折",
+			"person":8881
+		
+		},
+		{
+			"id":8,
+			"img":"img/group/list08.jpg",
+			"title":"尼康（Nikon）D7100 （18-140）套机",
+			"discribe":"2400万像素APS-C CMOS传感器无光学低通滤镜，6.0fps连拍速度 51点自动对焦系统。",
+			"price":"￥5099",
+			"pPrice":"￥5800",
+			"sale":"8.8折",
+			"person":8881
+		
+		},
+		{
+			"id":9,
+			"img":"img/group/list09.jpg",
+			"title":"阿里智能A+必联无线路由器 低价包邮",
+			"discribe":"家用高速光纤路由，手机APP管理WiFi，生活更简单，轻松穿墙，信号稳定，B-LINK联袂阿里智能打造智能WiFi新生活",
+			"price":"￥59",
+			"pPrice":"￥84",
+			"sale":"7.0折",
+			"person":8881
+		
+		},
+		{
+			"id":10,
+			"img":"img/group/list10.jpg",
+			"title":"小熊0.8L紫砂电炖锅DDZ-1082 蒸炖双全",
+			"discribe":"0.8L紫砂内胆 双层防烫！9.5小时预约功能，可保温，配蒸盘，炖汤、糖水、BB粥、补品，多功能炖煮，臻养身心！",
+			"price":"￥89",
+			"pPrice":"￥99",
+			"sale":"9.0折",
+			"person":8881
+		
+		},
+		
+		{
+			"id":11,
+			"img":"img/group/list11.jpg",
+			"title":"浪天LT-Z09声波电动牙刷 USB充电 安全便携",
+			"discribe":"4刷头高配版， 2分钟定时，30秒提醒！轻柔/美白两种模式，满足多种需求！USB充电，轻松便携、环保、省钱！",
+			"price":"￥29.9",
+			"pPrice":"￥69",
+			"sale":"4.3折",
+			"person":8881
+		
+		},
+		{
+			"id":12,
+			"img":"img/group/list12.jpg",
+			"title":"中联烘鞋器 烘干、杀菌、除臭 安全耐用",
+			"discribe":"可伸缩适合35~45鞋码，便捷开关分线设计，进口PTC快速发热，有效烘干，双脚倍感舒适！",
+			"price":"￥28.9",
+			"pPrice":"￥79",
+			"sale":"3.7折",
+			"person":8881
+		
+		},
+		{
+			"id":13,
+			"img":"img/group/list13.jpg",
+			"title":"酷派 cool1（标准版/全网通）32G",
+			"discribe":"双1300万后置摄像素 4000mAh大电池 5.5英寸",
+			"price":"￥1059",
+			"pPrice":"￥1099",
+			"sale":"9.6折",
+			"person":8881
+		
+		},
+		{
+			"id":14,
+			"img":"img/group/list14.jpg",
+			"title":"小米 红米Pro（标准版/全网通）正品直降 !",
+			"discribe":"3GB+32GB内存，十核双摄像头，2.5D玻璃，指纹识别，PDAF相位对焦，实时背景虚化",
+			"price":"￥1259",
+			"pPrice":"￥1499",
+			"sale":"8.4折",
+			"person":8881
+		
+		},
+		{
+			"id":15,
+			"img":"img/group/list15.jpg",
+			"title":"360 手机N4（移动4G） 双卡双待",
+			"discribe":"5.5英寸1080P屏幕，4GB+32GB大内存，X20十核芯片",
+			"price":"￥979",
+			"pPrice":"￥988",
+			"sale":"9.9折",
+			"person":8881
+		
+		},
+		{			
+			"id":16,
+			"img":"img/group/list16.jpg",
+			"title":"魅族 PRO6 （32G/全网通版）",
+			"discribe":"十核处理器，采用了NXP第三代SmartPA芯片，智能美颜，指纹识别",
+			"price":"￥1959",
+			"pPrice":"￥2498",
+			"sale":"7.8折",
+			"person":8881
+		
+		},
+		{
+			"id":17,
+			"img":"img/group/list17.jpg",			
+			"title":"魅族 MX6（32G/全网通）限时抢！",
+			"discribe":"4G+ 32G 大内存，十核全网通！，PDAF相位对焦，快速充电，TDDI高精度显示，mTouch指纹支付",
+			"price":"￥1569",
+			"pPrice":"￥1999",
+			"sale":"7.8折",
+			"person":8881
+		
+		},
+		{
+			"id":18,
+			"img":"img/group/list18.jpg",			
+			"title":"酷睿i7！联想 IdeaPad 710S超极本 256G固态",
+			"discribe":"酷睿i7 6500U，性能强劲！4G内存+256G固态硬盘，13.3英寸1080P ips屏幕，13.9mm炫薄铝镁合金机身",
+			"price":"￥5099",
+			"pPrice":"￥5699",
+			"sale":"8.9折",
+			"person":8881
+		
+		},
+		{
+			"id":19,
+			"img":"img/group/list19.jpg",
+			"title":"华硕灵耀 U5000超极本 烟灰色 512G固态",
+			"discribe":"升级940MX独显！六代酷睿i5-6200U，可扩展4GB内存，512GB海量固态硬盘！2.1cm纤薄机身",
+			"price":"￥4999",
+			"pPrice":"￥5399",
+			"sale":"9.3折",
+			"person":8881
+		
+		},
+		{
+			"id":20,
+			"img":"img/group/list20.jpg",
+			"title":"ThinkPad L460商用级本 i5固态 六芯电池",
+			"discribe":"商用级高配！高分屏，128GB+500GB混合硬盘，速度快容量足！i5-6200U！可扩展内存至32GB，2GB独显！",
+			"price":"￥4899",
+			"pPrice":"￥5599",
+			"sale":"8.7折",
+			"person":8881
+		
+		},
+		{
+			"id":21,
+			"img":"img/group/list21.jpg",
+			"title":"魅族 魅蓝E(移动版/全网通可选) 现货新低！",
+			"discribe":"多彩金属机身， 5.5 英寸屏幕， 2.5D玻璃，快速充电，PDAF相位对焦",
+			"price":"￥1099",
+			"pPrice":"￥1499",
+			"sale":"7.3折",
+			"person":8881
+		
+		},
+		{			
+			"id":22,
+			"img":"img/group/list22.jpg",
+			"title":"立省1000元！微软Surface Pro 4 i5中国版",
+			"discribe":"12.3英寸2736x1824视网膜屏幕，六代酷睿i5 6300U处理器，4GB+128GB SSD，8.45mm轻薄机身！",
+			"price":"￥5588",
+			"pPrice":"￥6588",
+			"sale":"8.5折",
+			"person":8881
+			
+		
+		},
+		{				
+			"id":23,
+			"img":"img/group/list23.jpg",
+			"title":"Acer T5000-59E4电竞游戏本 立省900元",
+			"discribe":"GTX950M游戏级显卡，15.6英寸1080P，第六代酷睿i5 6300HQ处理器，4GB DDR4内存，1TB机械硬盘",
+			"price":"￥4099",
+			"pPrice":"￥4999",
+			"sale":"8.2折",
+			"person":8881
+		
+		},
+		{	
+			"id":24,
+			"img":"img/group/list24.jpg",
+			"title":"立省千元！华硕U303L超极本 i7+8G+256G",
+			"discribe":"20mm纤薄金属机身，13.3英寸1080P高分屏，酷睿i7-5500U，8G内存+256G固态硬盘，烟熏灰色",
+			"price":"￥4999",
+			"pPrice":"￥5999",
+			"sale":"8.3折",
+			"person":8881
+		
+		}],
+	"open_group":[
+			{
+				"img":"img/group/open_group_01.jpg",
+				"id":1,
+				"title":"小熊智能加湿器 4L恒湿大容量 雾量可调",
+				"discribe":"环绕式防辐射屏蔽罩+辐射隔离装置，专为孕妇宝贝设计，静音贴心！内置香薰盒！旋钮随心调节雾量！",
+				"price":"￥139",
+				"pPrice":"￥159",
+				"sale":"8.7折",
+				"person":123		
+			
+			},
+			{
+				"img":"img/group/open_group_02.jpg",
+				"id":2,
+				"title":"Remax USB车载充电器通用型 一拖三车充！",
+				"discribe":"智能快速充电 一拖三车充，更多接口更少烦恼，3USB，4.2A快速充电，苹果安卓通用！",
+				"price":"￥25.8",
+				"pPrice":"￥51.6",
+				"sale":"5.0折",
+				"person":5433		
+					
+			
+			}]
+}

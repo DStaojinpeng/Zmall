@@ -1,0 +1,241 @@
+*{
+				margin: 0;
+				padding: 0;
+				list-style: none;
+			}
+			html,body{
+				height: 100%;
+				width: 100%;
+				
+			}
+			a{
+				text-decoration: none;
+				color: #666;
+				display: inline-block;
+				margin: 0 8px;
+			}
+			#header{
+				height: 29px;
+				width: 100%;
+				background: #F5F5F5;
+				border-bottom: 1px solid #E6E6E6;
+				line-height: 29px;
+				font-size: 12px;
+				/*font: 12px/1.5 Arial*/
+				font-family: Microsoft yahei;
+				
+				
+			}
+			#header_count{
+				position: absolute;
+				left: 30px;
+				color: gainsboro;
+				/*height: 29px;*/
+				
+				
+			}
+			#list1{
+				position: absolute;
+				right: 30px;
+				/*height: 29px;*/
+				
+				
+				
+			}
+			#list1 li{
+				float: left;
+				height: 29px;
+				color: gainsboro;
+				position: relative;
+
+				
+			}
+			#list1 li:first-child a{
+				color: #C00;
+			}
+			#list1 li span{
+				padding:0 6px 3px 6px;
+				/*width:7px;
+				height:3px;*/
+				/*background:url(http://icon.zol-img.com.cn/newtuan/tuan_detail/arrow-down.png) no-repeat center;*/
+				/*display:inline-block;*/
+				transition:.3s;
+				-ms-transition:.3s;
+				-webkit-transition:.3s;
+				-moz-transition:.3s;
+				
+				
+				
+				display: inline-block;
+				width: 7px;
+				height: 4px;
+				background: url(../img/head/arrow-down.png)no-repeat center;
+				
+			}
+			#list1 li a{
+				display: inline-block;
+				margin: 0 8px;
+			}
+			
+			#list1 li .code_in_head{
+				display: none;
+				position: absolute;
+				/*left: 0;
+				top: 29px;*/
+				width: 124px;
+				height: 165px;
+				text-align: center;
+				border: 1px solid #ededed;
+				background: #fff;
+				padding: 23px 20px;
+				line-height: 18px;
+				color: #333;
+				z-index: 100;
+			}
+			#list1 li .code_in_head img{
+				width: 124px;
+				height: 124px;
+			}
+			a:hover{
+				text-decoration: underline;
+				color: #c40;
+			}
+			.mail_box{
+				display: none;
+				position: absolute;
+				top: 29px;
+				right: 0;
+				width: 287px;
+				height: 92px;
+				border: 1px solid #ededed;
+				background: #fff;
+				padding: 10px;
+				z-index: 100;
+			}
+			.mail_display{
+				display: block;
+				
+			}
+			.mail_box>p>i{
+				font-size: 12px;
+				color: #666;
+			}
+			
+			.mail_box .text_search{
+				height: 30px;
+				width: 210px;
+				float: left;
+				border: 1px solid #CCCCCC;
+				border-right: 1px solid #f12721;
+			}
+			#ensure{
+				height: 32px;
+				width: 65px;
+				background: #f12721;
+				border: 0px solid #f12721;
+				    color: #fff;
+			}
+			
+			
+			
+			
+			#search{
+				width: 96%;
+				height: 88px;
+				margin: 30px auto;
+
+				
+			}
+			#search_logo {
+				width: 400px;
+				float: left;
+				background: url(../img/head/zol-logo.png) no-repeat;
+			}
+			#search_logo a:first-child{
+				width: 190px;
+				height: 50px;
+				display:inline-block;
+
+			}
+			#search_logo a:last-child{
+				width: 85px;
+				height: 50px;
+				display:inline-block;
+				
+
+			}
+			
+			/* 中     */
+			
+			#search_middle{
+				height: 50px;
+				width: 580px;
+				float: left;
+				font-size: 12px;
+
+			}
+			#search_box{
+				position: relative;
+				
+			}
+			.searchBoxI{
+				width: 450px;
+				height:36px;
+				border: 2px solid #C40000;
+				/*font-size: 16px;*/
+				padding-left: 10px;
+				color: #666;
+			}
+			#btn{
+				
+				width: 90px;
+				height: 40px;
+				background: #C40000;
+				border: 2px solid #C40000;
+				position: absolute;
+				right: 36px;
+				top: 0;
+				color: #fff;
+				font-size: 18px;
+				
+			}
+			#search_middle ul{
+				margin-top: 10px;
+			}
+			#search_middle ul li{
+				float: left;
+				color: #999;
+				margin-right:18px ;
+			}
+			
+			
+			
+		.font_text{
+			color: #fff;
+			font-size: 18px;
+		}
+			
+			#search_server{
+				float: left;
+				font-size: 14px;
+				color: #666;
+				font-family: "微软雅黑";
+				margin-left: 50px;
+				
+			}
+			#search_server a{
+				display:block;
+				background: url(../img/head/solgan.png) no-repeat;
+				width:124px;
+				height: 28px;
+				font-size: 14px;
+				margin-left: 28px;
+				/*float: right;*/
+				/*position: absolute;*/
+			}
+			#search_server p span{
+				color:#c31f1f
+			}
+			
+			
+
