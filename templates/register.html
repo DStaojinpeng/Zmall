@@ -26,7 +26,8 @@
 				<p>30秒快速注册，加入ZOL商城</p>
 			</div>
 			<div class="zhuce">
-
+                <form action="{% url 'app:register' %}" method="post">
+                    {% csrf_token %}
 					<ul class="list">
 						<li><i></i>用手机号注册</li>
 						<li></li>
@@ -35,7 +36,7 @@
 					<div class="xinxi">
 
 						<label for=""><i>*</i> 手机号:</label>
-						<input type="text" name="" id="phoneNum1" class="num" value="">
+						<input type="text" name="tel" id="phoneNum1" class="num" value="">
 						<div id="tipNode" class="tishi">
 							<i class="correct_tip"></i>
 							<i class="error_tip"></i>
@@ -80,7 +81,7 @@
 					<div class="xinxi">
 
 						<label for=""><i>*</i>密码:</label>
-						<input type="password" name="" class="num" id="mimaMm">
+						<input type="password" name="password" class="num" id="mimaMm">
 						<div class="tishi" id="tishiMm">
 							<i class="correct_tip"></i>
 							<i class="error_tip"></i>
@@ -106,10 +107,9 @@
 
 					<div class="zhuceBtn">
 						<input type="checkbox" id="check" checked="checked">同意<a href="#">《商城用户协议》</a>和<a href="#">《隐私权说明》</a>
-						<input type="button" id="btn" value="注册">
+						<input type="submit" id="btn" value="注册">
 					</div>
-
-
+                </form>
 			</div>
 
 			<div class="lianjie">

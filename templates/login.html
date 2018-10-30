@@ -26,11 +26,13 @@
 		<div class="content">
 			<img src="{% static  'img/login/ad2.jpg' %}">
 			<div class="form">
+                <form action="{% url 'app:login' %}" method="post">
+                    {% csrf_token %}
 					<h3>登录ZOL商城</h3><span><i></i>手机动态码登录</span>
-					<input type="text" id="uSer" placeholder="手机号/邮箱/用户名">
-					<input type="password" id="pAssword" placeholder="密码">
+					<input type="text" id="uSer" placeholder="手机号/邮箱/用户名" name="tel">
+					<input type="password" id="pAssword" placeholder="密码" name="password">
 				<a href="#">忘记密码?</a>
-				<input type="button" id="btnLogin" value="登  录">
+				<input type="submit" id="btnLogin" value="登  录">
 				<div class="coop">
 					<div class="leftL">
 
@@ -48,6 +50,7 @@
 					<li class="baidu"></li>
 
 				</ul>
+                </form>
 			</div>
 		</div>
 

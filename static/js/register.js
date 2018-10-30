@@ -174,18 +174,18 @@ $(function(){
 				}else{
 				if(check.checked&&flag1==true&&flag2==true&&flag4==true&&flag5==true){
 
-				    $.ajax({
-                        type:"post",
-                        async: true,
-                        url:"http://127.0.0.1:8000/register.html",
-                        data:{tel:$('#phoneNum1').val(),password:$('#mimaMm2').val(),type:"register"},
-                        success:function (res) {
-                             if (res == "OK")
-                             {
-                                 window.location.href = 'http://127.0.0.1:8000/'
-                             }
-                        }
-                    })
+				    // $.ajax({
+                    //     type:"post",
+                    //     async: true,
+                    //     url:"http://127.0.0.1:8000/register.html",
+                    //     data:{tel:$('#phoneNum1').val(),password:$('#mimaMm2').val(),type:"register"},
+                    //     success:function (res) {
+                    //          if (res == "OK")
+                    //          {
+                    //              window.location.href = 'http://127.0.0.1:8000/'
+                    //          }
+                    //     }
+                    // })
 // 						//先获取之前保存在cookie中的用户
 // 					var users = $.cookie("users") ? JSON.parse($.cookie("users")) : [];
 //
