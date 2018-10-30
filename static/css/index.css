@@ -15,7 +15,12 @@ body{
 	background: #ce1a1b;
 	color: #fff;
 }
-
+/*.imghead{*/
+	/*display: inline-block;*/
+	/*width: 20px;*/
+	/*height: 20px;*/
+	/*border-radius: 50%;*/
+/*}*/
 .nav_content{
 	
 	text-align: center;

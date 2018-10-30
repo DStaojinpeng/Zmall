@@ -25,9 +25,11 @@
 				<a href="#">ZOL商城首页</a> | <a href="#">中关村在线</a>
 			</div>
 			<ul id="list1">
-				<li>{% ifequal status "login" %}
-                    <b style="color: #2D2D2D">{{ name }}</b>|
-                    <a href="{% url 'app:logout' %}">退出</a>
+				<li style="line-height: 29px;overflow: hidden">
+                {% ifequal status "login" %}
+                    <a href="/uploadhead/" style="float: left"><img src="{{ imghead }}" alt="" style="width: 29px;"></a>
+                    <i style="color: #2D2D2D;float: left">{{ name }}</i>|
+                    <a href="{% url 'app:logout' %}" >退出</a>
 				{% else %}
                     <a href="{% url 'app:login' %}">登录</a>
 				{% endifequal %}

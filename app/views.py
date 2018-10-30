@@ -1,4 +1,5 @@
 import hashlib
+import os
 import random
 import time
 from uuid import UUID
@@ -7,6 +8,7 @@ from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
+from Django_Zmall import settings
 from app.models import User
 
 def generate_token():
@@ -26,7 +28,8 @@ def index(request):
     if user_list.exists():
         user = user_list.first()
         name = user.username
-        return render(request,'index.html',context={'status':'login','name':name})
+        imghead = "/static/upload/" + user.imghead
+        return render(request,'index.html',context={'status':'login','name':name, 'imghead': imghead})
     else:
         return render(request,'index.html',context={'status':'logout'})
 
@@ -101,3 +104,26 @@ def logout(request):
     response = redirect('app:index')
     response.delete_cookie('token')
     return response
+
+
+def uploadhead(request):
+    if request.method == "GET":
+       return render(request,'uploadhead.html')
+    elif request.method == "POST":
+        token = request.COOKIES.get('token')
+        user_list = User.objects.filter(token=token)
+        if user_list.exists():
+            user = user_list.first()
+            file = request.FILES.get('imghead')
+            filename = str(random.randrange(1,100)) + "-" + file.name
+            filepath = os.path.join(settings.MEDIA_ROOT,filename)
+            with open(filepath,'wb') as fb:
+                for item in file.chunks():
+                    fb.write(item)
+            user.imghead = filename
+            user.save()
+            respone = redirect('app:index')
+            return respone
+        else:
+            return HttpResponse('上传失败,请登陆')
+    return HttpResponse('进入错误页面')
