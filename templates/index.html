@@ -8,7 +8,6 @@
 		<link rel="stylesheet" type="text/css" href="{% static 'css/index.css' %}"/>
 		<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
 		<script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/index.js' %}" type="text/javascript" charset="utf-8"></script>
 		<script src="{%  static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
 {#        <script src="{%  static 'js/text.js' %}" type="text/javascript" charset="utf-8"></script>#}
 	</head>
@@ -23,11 +22,12 @@
 		<div id="header">
 			<div id="header_count">
 				<a href="#">ZOL商城首页</a> | <a href="#">中关村在线</a>
+                <a href="{% url "app:readjson" %}"> json</a>
 			</div>
 			<ul id="list1">
 				<li style="line-height: 29px;overflow: hidden">
                 {% ifequal status "login" %}
-                    <a href="/uploadhead/" style="float: left"><img src="{{ imghead }}" alt="" style="width: 29px;"></a>
+                    <a href="/uploadhead/" style="float: left;"><img src="{{ imghead }}" alt="" style="width: 29px;border-radius:50%"></a>
                     <i style="color: #2D2D2D;float: left">{{ name }}</i>|
                     <a href="{% url 'app:logout' %}" >退出</a>
 				{% else %}
@@ -117,8 +117,13 @@
 
 			<!--轮播===============-->
 			<div class="lunbo">
-				<ul class="lunbo_list">
-					<!--<li><img src="img/content_display/lunbo1.jpg"/></li>-->
+				<ul class="lunbo_list" style="height: 300px; float: left">
+					{% for foo in lunbo %}
+					    <li style="float: left">
+                            <img src="{% static foo.src %}" alt="">
+                        </li>
+					{% endfor %}
+					
 				</ul>
 				<ul class="lunbo_list2_tip">
 				</ul>
@@ -226,6 +231,27 @@
 
 	<!--商品列表   -->
 		<ul class="goods_list">
+            {% for foo in goodlist %}
+                <li style="float: left; width: 360px;height: 350px;margin: 10px">
+                <div>
+                    <img src="{% static foo.src %}" alt="">
+                    <div>
+                        <h3>
+                            <a href="{% url 'app:product' %}" style="color: rgb(102, 102, 102); text-decoration: none;font-size: 12px">{{ foo.title }}</a>
+                        </h3>
+                        <em class="discripe" >{{ foo.discribe }}</em>
+                        <p>
+                            <span>{{ foo.price }}</span>
+                            <del>{{ foo.pPirice }}</del>
+                            <i>{{ foo.sale }}</i>
+                            <input type="button" value="马上抢" class="im_buy">
+                        </p>
+                    </div>
+                    <div></div>
+                </div>
+                </li>
+            {% endfor %}
+
 			<!--<li class="example">
 				<div class="goods_describe">
 					<img src="img/example/exampl.jpg"/>
@@ -378,5 +404,6 @@
 		</div>
 
     </body>
+		<script src="{% static 'js/index.js' %}" type="text/javascript" charset="utf-8"></script>
 
 </html>

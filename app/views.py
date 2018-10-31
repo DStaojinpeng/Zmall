@@ -4,12 +4,22 @@ import random
 import time
 from uuid import UUID
 
+import json
+
+# 读取JOSN文件，写入数据库
+
+    # print(type(res))
+    # print(res)
+
+
+
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
 from Django_Zmall import settings
-from app.models import User
+from app.models import User, Imgsrc
+
 
 def generate_token():
     token = str(time.time()) + str(random.random())
@@ -23,15 +33,18 @@ def generate_password(password):
     return sha.hexdigest()
 
 def index(request):
+    lunbo = Imgsrc.objects.filter(use="lunbo")
+    goodlist = Imgsrc.objects.filter(use="list")
+    open_group = Imgsrc.objects.filter(use="open_group")
     token = request.COOKIES.get('token')
     user_list = User.objects.filter(token=token)
     if user_list.exists():
         user = user_list.first()
         name = user.username
         imghead = "/static/upload/" + user.imghead
-        return render(request,'index.html',context={'status':'login','name':name, 'imghead': imghead})
+        return render(request,'index.html',context={'status':'login','name':name, 'imghead': imghead,"lunbo":lunbo,"goodlist":goodlist,"open_group":open_group})
     else:
-        return render(request,'index.html',context={'status':'logout'})
+        return render(request,'index.html',context={'status':'logout',"lunbo":lunbo,"goodlist":goodlist,"open_group":open_group})
 
 def product(request):
     return render(request, 'product.html')
@@ -127,3 +140,35 @@ def uploadhead(request):
         else:
             return HttpResponse('上传失败,请登陆')
     return HttpResponse('进入错误页面')
+
+
+def readjson(request):
+    file = "/home/tjp/Desktop/Django_Zmall/static/json/index.json"
+    with open(file,"r") as fb:
+        fileContent = fb.read()
+        res = json.loads(fileContent)
+    key_list = []
+    for key in res:
+        key_list.append(key)
+    for key,value in res.items():
+        for content in value:
+            if key == key_list[0]:
+                imgsrc = Imgsrc()
+                imgsrc.use = key
+                imgsrc.number = content["id"]
+                imgsrc.src = content["img"]
+                imgsrc.save()
+            else:
+                imgsrc = Imgsrc()
+                imgsrc.number = content["id"]
+                imgsrc.use = key
+                imgsrc.discribe = content["discribe"]
+                imgsrc.pPirice = content["pPrice"]
+                imgsrc.price = content["price"]
+                imgsrc.person = content["person"]
+                imgsrc.title = content["title"]
+                imgsrc.src = content["img"]
+                imgsrc.sale = content["sale"]
+                imgsrc.save()
+
+    return HttpResponse("数据写入完成")
