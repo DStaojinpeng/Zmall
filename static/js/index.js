@@ -7,11 +7,13 @@
 		$(".discripe").html(content + "...")
 	}
 
-	 var lis = $(".lunbo_list li");
-	 var newli = lis.first().clone()
-	 var widthli  = newli.width()
-	 $(".lunbo_list").append(newli);
-	 $(".lunbo_list").width(widthli*$(".lunbo_list li").length)
+	 var lis = $(".lunbo_list li").first().clone();
+	 var liwidth = $(".lunbo_list li").width()
+	 // var newli = lis.first().clone();
+	 // var widthli  = newli.width();
+	 // alert(widthli);
+	 $(".lunbo_list").append(lis);
+	 // // $(".lunbo_list").width(widthli*$(".lunbo_list li").length)
 	 // alert($(".lunbo_list").width(widthli* $(".lunbo_list li").length))
 	 var count = 0;
 	 setInterval(function(){
@@ -22,13 +24,13 @@
 	function move()
 	{
 		//让滚动做循环
-		if(count >= 5)
+		if(count >= 4)
 		{
 			//不使用动画，直接将ul归零
-			$(".lunbo_list").css.left = "0px"
+			$(".lunbo_list").css("left","0")
 			count = 1
 		}
-		$(".lunbo_list").animate({left:-count*liWidth})
+		$(".lunbo_list").animate({left:-count*liwidth})
 	}
 
 });

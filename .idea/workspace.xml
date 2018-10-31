@@ -2,12 +2,6 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="55b9426f-ed89-4516-8d96-881fa34b11c6" name="Default Changelist" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/dataSources/183a39a5-015f-45df-907a-a984289d49e6.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/dataSources/183a39a5-015f-45df-907a-a984289d49e6.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Django_Zmall/settings.py" beforeDir="false" afterPath="$PROJECT_DIR$/Django_Zmall/settings.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/models.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/models.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/urls.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/urls.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/app/views.py" beforeDir="false" afterPath="$PROJECT_DIR$/app/views.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/static/js/index.js" beforeDir="false" afterPath="$PROJECT_DIR$/static/js/index.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/templates/index.html" beforeDir="false" afterPath="$PROJECT_DIR$/templates/index.html" afterDir="false" />
     </list>
@@ -99,8 +93,8 @@
       <usages-collector id="statistics.file.extensions.edit">
         <counts>
           <entry key="css" value="45" />
-          <entry key="html" value="1391" />
-          <entry key="js" value="1259" />
+          <entry key="html" value="1398" />
+          <entry key="js" value="1364" />
           <entry key="md" value="42" />
           <entry key="py" value="5091" />
           <entry key="txt" value="5" />
@@ -109,8 +103,8 @@
       <usages-collector id="statistics.file.types.edit">
         <counts>
           <entry key="CSS" value="45" />
-          <entry key="HTML" value="1391" />
-          <entry key="JavaScript" value="1259" />
+          <entry key="HTML" value="1398" />
+          <entry key="JavaScript" value="1364" />
           <entry key="Markdown" value="42" />
           <entry key="PLAIN_TEXT" value="5" />
           <entry key="Python" value="5091" />
@@ -119,14 +113,14 @@
     </session>
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.5383037">
+    <splitter split-orientation="horizontal" split-proportion="0.5253078">
       <split-first>
         <leaf>
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/templates/index.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="63">
-                  <caret line="119" column="46" selection-start-line="119" selection-start-column="46" selection-end-line="119" selection-end-column="46" />
+                <state relative-caret-position="215">
+                  <caret line="127" column="44" lean-forward="true" selection-start-line="127" selection-start-column="44" selection-end-line="127" selection-end-column="44" />
                   <folding>
                     <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
                     <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -220,8 +214,8 @@
           <file pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/static/js/index.js">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="513">
-                  <caret line="30" column="14" lean-forward="true" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
+                <state relative-caret-position="190">
+                  <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
                 </state>
               </provider>
             </entry>
@@ -274,8 +268,8 @@
         <option value="$PROJECT_DIR$/Django_Zmall/settings.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/app/views.py" />
-        <option value="$PROJECT_DIR$/static/js/index.js" />
         <option value="$PROJECT_DIR$/templates/index.html" />
+        <option value="$PROJECT_DIR$/static/js/index.js" />
       </list>
     </option>
   </component>
@@ -446,7 +440,7 @@
       <window_info anchor="bottom" id="Database Changes" />
       <window_info anchor="bottom" id="Version Control" show_stripe_button="false" />
       <window_info anchor="bottom" id="Python Console" />
-      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.18353577" />
+      <window_info active="true" anchor="bottom" id="Terminal" visible="true" weight="0.19568151" />
       <window_info anchor="bottom" id="Event Log" side_tool="true" />
       <window_info anchor="bottom" id="Database Console" weight="0.32928476" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -737,17 +731,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/static/js/index.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="513">
-          <caret line="30" column="14" lean-forward="true" selection-start-line="30" selection-start-column="14" selection-end-line="30" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/templates/index.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="63">
-          <caret line="119" column="46" selection-start-line="119" selection-start-column="46" selection-end-line="119" selection-end-column="46" />
+        <state relative-caret-position="215">
+          <caret line="127" column="44" lean-forward="true" selection-start-line="127" selection-start-column="44" selection-end-line="127" selection-end-column="44" />
           <folding>
             <element signature="n#style#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#li#0;n#ul#0;n#div#0;n#body#0;n#html#0;n#!!top" expanded="true" />
@@ -758,6 +745,13 @@
             <element signature="n#style#0;n#li#0;n#ul#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
             <element signature="n#style#0;n#a#0;n#h3#0;n#div#0;n#div#0;n#li#0;n#ul#0;n#div#6;n#body#0;n#html#0;n#!!top" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/static/js/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="190">
+          <caret line="10" column="46" selection-start-line="10" selection-start-column="46" selection-end-line="10" selection-end-column="46" />
         </state>
       </provider>
     </entry>
