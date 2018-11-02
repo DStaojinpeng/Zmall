@@ -27,7 +27,7 @@
 			<ul id="list1">
 				<li style="line-height: 29px;overflow: hidden">
                 {% ifequal status "login" %}
-                    <a href="/uploadhead/" style="float: left;"><img src="{{ imghead }}" alt="" style="width: 29px;border-radius:50%"></a>
+                    <a href="{% url 'app:uploadhead' %}" style="float: left;"><img src="{{ imghead }}" alt="" style="width: 29px;border-radius:50%"></a>
                     <i style="color: #2D2D2D;float: left">{{ name }}</i>|
                     <a href="{% url 'app:logout' %}" >退出</a>
 				{% else %}
@@ -35,7 +35,7 @@
 				{% endifequal %}
                     |</li>
 				<li><a href="">免费注册</a>|</li>  <!--register.html-->
-				<li><a href="car.html">我的订单</a>|</li>
+				<li><a href="{% url 'app:car' %}">我的订单</a>|</li>
 				<li>
 					<a href="#">关注团购</a><span></span> |
 					<div class="code_in_head">
@@ -234,17 +234,19 @@
             {% for foo in goodlist %}
                 <li style="float: left; width: 360px;height: 350px;margin: 10px">
                 <div>
+                    <a href="{% url 'app:product' foo.number%}">
                     <img src="{% static foo.src %}" alt="">
+                    </a>
                     <div>
                         <h3>
-                            <a href="{% url 'app:product' %}" style="color: rgb(102, 102, 102); text-decoration: none;font-size: 12px">{{ foo.title }}</a>
+                            <a href="{% url 'app:product' foo.number %}" style="color: rgb(102, 102, 102); text-decoration: none;font-size: 12px">{{ foo.title }}</a>
                         </h3>
                         <em class="discripe" >{{ foo.discribe }}</em>
                         <p>
                             <span>{{ foo.price }}</span>
                             <del>{{ foo.pPirice }}</del>
                             <i>{{ foo.sale }}</i>
-                            <input type="button" value="马上抢" class="im_buy">
+                            <input type="button" value="马上抢" class="im_buy" >
                         </p>
                     </div>
                     <div></div>

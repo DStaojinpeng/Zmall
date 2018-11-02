@@ -50,7 +50,7 @@
 			</ul>
 
 			<ul class="header_list2">
-				<li class="first">您好，欢迎来Z团购物！请<a href="">登录</a></li>
+				<li class="first">您好，欢迎来Z团购物！请<a href="{% url 'app:login' %}">登录</a></li>
 				<li>注册</li>
 				<li>我的订单</li>
 			</ul>
@@ -104,7 +104,7 @@
 							</div>
 						</li>-->
 
-					<li class="liCurrent"><img src="{% static  '/static/img/group/list01.jpg/' %}"><div class="deCurrent"><a>DASH闪充，骁龙820，6GB+64GB,美拍，0.2S指纹识别，EIS电子防抖</a><span>￥2888</span><del>￥￥3159</del></div></li></ul>
+					<li class="liCurrent"><img src="{% static  'img/group/list01.jpg/' %}"><div class="deCurrent"><a>DASH闪充，骁龙820，6GB+64GB,美拍，0.2S指纹识别，EIS电子防抖</a><span>￥2888</span><del>￥￥3159</del></div></li></ul>
 					<div class="lastCurrent">
 						清空最近浏览记录
 					</div>
@@ -115,17 +115,17 @@
 		<!--一加手机-->
 		<div class="goods_descript_yijia">
 			<div class="goods_class">
-				手机通讯 &gt;一加手机3（6GB+64GB/全网通）现货！
+				手机通讯 &gt;{{ good.title }}
 			</div>
 			<div class="pic_text">
 				<div class="pic">
 					<!--放大镜效果-->
 					<div class="smallImg">
-						<img src="{% static  'img/product/ChMkJ1fXnOaIR1VXAADUbpzrUaEAAVU7QAdzcYAANSG873(1).jpg' %}">
+						<img src="{% static good.src %}">
                 		<div class="smallArea" style="width: 166.667px; height: 166.667px;"></div>
 					</div>
 					<div class="bigArea" style="">
-		                <img class="bigImg" src="{% static  'img/product/ChMkJ1fXnOaIR1VXAADUbpzrUaEAAVU7QAdzcYAANSG873(1).jpg' %}">
+		                <img class="bigImg" src="{% static good.src %}">
 		            </div>
 
 
@@ -139,14 +139,14 @@
 				</div>
 				<div class="text">
 					<div class="up">
-						<h2>一加手机3（6GB+64GB/全网通）现货！</h2>
-						<p class="small">DASH闪充，骁龙820，6GB+64GB,美拍，0.2S指纹识别，EIS电子防抖</p>
+						<h2>{{ good.title }}</h2>
+						<p class="small">{{ good.discribe }}</p>
 						<p><span>现货！</span><span>限量</span><span>成都3环内3小时送达！</span></p>
 					</div>
 					<div class="price">
-						<h1>￥2888</h1>
-						<del>￥3159</del>
-						<span>9.1折</span>
+						<h1>{{ good.price }}</h1>
+						<del>{{ good.pPrice }}</del>
+						<span>{{ good.sale }}</span>
 					</div>
 					<ul>
 						<li><span>137</span>人购买</li>

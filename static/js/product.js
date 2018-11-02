@@ -32,7 +32,7 @@ $(function(){
 	if ($(".header_list2 .first").find("a").html() == "登录"){
 		$(".header_list2 .first").click(function(e){
 			e.preventDefault();
-			location.href = "login.html";
+			location.href = "/login/";
 		})
 	}else{
 		$(".header_list2 .first").click(function(){
@@ -49,7 +49,7 @@ $(function(){
 	}else if($(".header_list2 li").eq(1).html() == "注册"){
 //		console.log($(".header_list2 li").eq(1).html());
 		$(".header_list2 li").eq(1).click(function(){
-			location.href = "register.html";
+			location.href = "/register/";
 		})
 	}
 	
@@ -87,7 +87,7 @@ $(function(){
 //	})
 	$(".header_list2").find("li").eq(2).click(function(){
 		
-		location.href = "car.html";
+		location.href = "/car/";
 	})
 	$(".header_list2 li").eq(2).click(function(){
 		window.open("car.html")
@@ -99,7 +99,7 @@ $(function(){
 		$(this).css("cursor","none")
 	})
 	$(".logo img").click(function(){
-		window.open("index .html")
+		window.open("/index/")
 	})
 	
 	
@@ -204,7 +204,7 @@ $(function(){
 				
 				$("#seeBuy").click(function(){
 //					
-					location.href = "index .html";
+					location.href = "/index/";
 //					$(".zhezhao").css("display","none");
 				})
 				$("#seeBuy").hover(function(){
@@ -216,7 +216,7 @@ $(function(){
 				
 				$("#loginPro").click(function(){
 					
-					location.href = "login.html";
+					location.href = "/login/";
 				})
 				$("#loginPro").hover(function(){
 					$(this).css("cursor","pointer");
@@ -248,7 +248,7 @@ $(function(){
 				
 				$("#seeBuy").click(function(){
 //					
-					location.href = "index .html";
+					location.href = "/index/";
 //					$(".zhezhao").css("display","none");
 				})
 				$("#seeBuy").hover(function(){

@@ -46,8 +46,10 @@ def index(request):
     else:
         return render(request,'index.html',context={'status':'logout',"lunbo":lunbo,"goodlist":goodlist,"open_group":open_group})
 
-def product(request):
-    return render(request, 'product.html')
+def product(request,num):
+    goods = Imgsrc.objects.filter(use="list",number=str(num))
+    good = goods.first()
+    return render(request, 'product.html', context={"good":good})
 
 
 def login(request):

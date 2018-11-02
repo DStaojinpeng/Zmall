@@ -1,11 +1,11 @@
  $(function () {
-	var content = $(".discripe").html();
-	if (content.length>35)
-	{
-		var content = content.substring(0,31);
-
-		$(".discripe").html(content + "...")
-	}
+	// var content = $(".discripe").html();
+	// if (content.length>35)
+	// {
+	// 	var content = content.substring(0,31);
+	//
+	// 	$(".discripe").html(content + "...")
+	// }
 
 	 var lis = $(".lunbo_list li").first().clone();
 	 var liwidth = $(".lunbo_list li").width()
