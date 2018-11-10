@@ -30,8 +30,8 @@
 			</ul>
 
 			<ul class="header_list2">
-				<li class="first"><b>您好，欢迎来Z团购物！请</b><a href="">登录</a><i></i></li>
-				<li class="secode"><b>退出</b><i></i></li>
+				<li class="first"><b>{{ name }}</b><a href="{% url 'app:logout' %}">[退出]</a><i></i></li>
+{#				<li class="secode"><b>退出</b><i></i></li>#}
 				<li>我的订单</li>
 			</ul>
 		</div>
@@ -64,33 +64,54 @@
 				<li class="price">单价（元）</li>
 				<li class="classNum">类型和数量</li>
 				<li class="allPrice">总价（元）</li>
-				<li class="store">操作</li>
+				<li class="store">操作(选中)</li>
 			</ul>
+
+            
 			<!--商品的购买的信息 列表汇总-->
 			<div class="godS">
-				<!--<ul class="ulgoodlist">
-				<li class="goods">
-					<img src="img/car/ChMkJlfI9bSIIka3AACuFP1e8ysAAU66QJ5cLgAAK4s597.jpg"/>
-					<h5><a href="#">魅族MX6（32G/全网通/香槟金）</a></h5>
-				</li>
-				<li class="price">1499</li>
-				<li class="classNum">
-					<div class="classNumD">
-						<input type="button" class="numB" id="minus" value="-" />
-					<input type="text" id="disT" class="numT" value="1" />
-					<input type="button" class="numB" id="plus" value="+" />
-					</div>
+                {% for cart in carts %}
+                <ul class="ulgoodlist">
+                    <li class="goods">
+                        <img src="{% static cart.goodsid.src%}" alt="">
+                        <h5>{{ cart.goodsid.discribe }}</h5>
+                    </li>
+                    <li class="price" price="{{ cart.goodsid.price }}">{{ cart.goodsid.price }}</li>
+                    <li class="classNum">
+                        <div class="classNumD">
+                            <input type="button" class="numA" id="minus" value="-" goodsid="{{ cart.goodsid.id }}"/>
+                            <input type="text" id="disT" class="numT" value="{{ cart.number }}" />
+                            <input type="button" class="numB" id="plus" value="+"  goodsid="{{ cart.goodsid.id }}"/>
+                        </div>
+                    </li>
+                    <li class="allPriceT">{{ cart.goodsid.price }}</li>
+                    <li class="store"><input type="checkbox" name="select"></li>
+                </ul>
+            {% endfor %}
+            </div>
+{#				<ul class="ulgoodlist">#}
+{#				<li class="goods">#}
+{#					<img src="img/car/ChMkJlfI9bSIIka3AACuFP1e8ysAAU66QJ5cLgAAK4s597.jpg"/>#}
+{#					<h5><a href="#">魅族MX6（32G/全网通/香槟金）</a></h5>#}
+{#				</li>#}
+{#				<li class="price">1499</li>#}
+{#				<li class="classNum">#}
+{#					<div class="classNumD">#}
+{#						<input type="button" class="numB" id="minus" value="-" />#}
+{#					<input type="text" id="disT" class="numT" value="1" />#}
+{#					<input type="button" class="numB" id="plus" value="+" />#}
+{#					</div>#}
+{##}
+{#				</li>#}
+{#				<li class="allPrice">1499</li>#}
+{#				<li class="store">有货</li>#}
+{#			</ul>#}
 
-				</li>
-				<li class="allPrice">1499</li>
-				<li class="store">有货</li>
-			</ul>-->
-			</div>
 
 
 
 			<div class="rightTotal">
-				<i class="allNum">0</i>件商品，总商品金额：<span id="tPrice">￥0</span>
+				<i class="allNum"></i>件商品，总商品金额：<span id="tPrice">￥</span>
 			</div>
 			<div class="bottomTotal">
 				<a href="">&lt;&lt;返回查看商品详情</a>

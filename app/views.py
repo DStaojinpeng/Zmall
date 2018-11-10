@@ -2,6 +2,7 @@ import hashlib
 import os
 import random
 import time
+import uuid
 from uuid import UUID
 
 import json
@@ -13,12 +14,12 @@ import json
 
 
 
-from django.http import HttpResponse
+from django.http import HttpResponse, JsonResponse
 from django.shortcuts import render, redirect
 
 # Create your views here.
 from Django_Zmall import settings
-from app.models import User, Imgsrc
+from app.models import User, Imgsrc, Cart
 
 
 def generate_token():
@@ -36,7 +37,7 @@ def index(request):
     lunbo = Imgsrc.objects.filter(use="lunbo")
     goodlist = Imgsrc.objects.filter(use="list")
     open_group = Imgsrc.objects.filter(use="open_group")
-    token = request.COOKIES.get('token')
+    token = request.session.get('token')
     user_list = User.objects.filter(token=token)
     if user_list.exists():
         user = user_list.first()
@@ -47,9 +48,15 @@ def index(request):
         return render(request,'index.html',context={'status':'logout',"lunbo":lunbo,"goodlist":goodlist,"open_group":open_group})
 
 def product(request,num):
+    token = request.session.get('token')
+    if token:
+        user= User.objects.get(token=token)
+        name = user.username
+    else:
+        name ='no'
     goods = Imgsrc.objects.filter(use="list",number=str(num))
     good = goods.first()
-    return render(request, 'product.html', context={"good":good})
+    return render(request, 'product.html', context={"good":good,'name':name})
 
 
 def login(request):
@@ -63,7 +70,7 @@ def login(request):
             user = user_list.first()
             response = redirect('app:index')
             token = user.token
-            response.set_cookie('token',token)
+
             return response
         else:
             return render(request,'login.html')
@@ -74,19 +81,16 @@ def register(request):
     elif request.method == "POST":
         tel = request.POST.get("tel")
         tel_list = User.objects.filter(tel=tel)
-        if tel_list.exists():
-            return render(request,'register.html')
-        else:
-            password = generate_password(request.POST.get('password'))
-            user = User()
-            user.tel = tel
-            user.password = password
-            user.token = generate_token()
-            user.username = "用户" + str(random.randrange(1,1000000))
-            user.save()
-            response = redirect('app:index')
-            response.set_cookie('token',user.token)
-            return response
+        password = generate_password(request.POST.get('password'))
+        user = User()
+        user.tel = tel
+        user.password = password
+        user.token = uuid.uuid3(uuid.uuid4(),'register')
+        request.session['token'] = user.token
+        user.username = "用户" + str(random.randrange(1,1000000))
+        user.save()
+        response = redirect('app:index')
+        return response
     # if request.is_ajax():
     #     if request.POST.get("type")=='exists':
     #         tel = request.POST.get('tel')
@@ -112,12 +116,19 @@ def register(request):
 
 
 def car(request):
-    return render(request,'car.html')
+    token = request.session.get('token')
+    if token:
+        user = User.objects.get(token=token)
+        name = user.username
+        carts = Cart.objects.filter(user=user)
+        return render(request, 'car.html', context={'name':name, 'carts':carts})
+    else:
+        return redirect('app:login')
 
 
 def logout(request):
     response = redirect('app:index')
-    response.delete_cookie('token')
+    request.session.flush()
     return response
 
 
@@ -174,3 +185,111 @@ def readjson(request):
                 imgsrc.save()
 
     return HttpResponse("数据写入完成")
+def chackingaccount(request):
+    tel = request.GET.get('account')
+    JsonData={
+        'status':1
+    }
+    user_list = User.objects.filter(tel=tel)
+    if user_list.exists():
+        JsonData['status'] = -1
+    return JsonResponse(JsonData)
+
+
+def chackregister(request):
+    user = User()
+    tel =request.POST.get('tel')
+    password = generate_password(request.POST.get('password'))
+    user.tel = tel
+    user.password = password
+    user.token = uuid.uuid3(uuid.uuid4(), 'register')
+    user.username = "用户" + str(random.randrange(100000, 1000000))
+    user.save()
+    request.session['token'] = str(user.token)
+    return redirect('app:index')
+
+
+def chacklogin(request):
+
+    return HttpResponse("登录成功")
+
+
+def chack(request):
+    tel = request.GET.get('tel')
+    print(tel)
+    user_list = User.objects.filter(tel=tel)
+    if user_list.exists():
+        user = user_list.first()
+        password = request.GET.get('password')
+        print(type(password))
+        password = generate_password(password)
+        if password==user.password:
+            user.token = uuid.uuid3(uuid.uuid4(),'login')
+            request.session['token'] = str(user.token)
+            user.save()
+            return JsonResponse({'status': 1,'msg':''})
+        else:
+            return JsonResponse({'status': -1,'msg':'密码错误'})
+    else:
+        return JsonResponse({'status': -1,'msg':'账号错误'})
+
+
+def addcart(request):
+    token = request.session.get('token')
+    if token:
+        goodsid = request.GET.get('goodsid')
+        goodsid = Imgsrc.objects.get(pk=goodsid)
+        user = User.objects.get(token=token)
+        goodsList = Cart.objects.filter(goodsid=goodsid)
+        if goodsList.exists():
+            goods = goodsList.first()
+            goods.number += 1
+            goods.isselect = True
+            goods.save()
+            JsonData = {
+                'status': 1,
+                'msg': '已添加到购物车',
+                       'number':goods.number
+            }
+        else:
+            goods = Cart()
+            goods.user = user
+            goods.goodsid = goodsid
+            goods.isselect = True
+            goods.save()
+            JsonData = {
+                'status': 1,
+                'msg': '已添加到购物车',
+                'number':goods.number
+            }
+        return JsonResponse(JsonData)
+    else:
+        JsonData = {
+            'status': -1,
+            'msg': '添加失败，未登录'
+        }
+        return JsonResponse(JsonData)
+
+
+def subcart(request):
+    token = request.session.get('token')
+    user = User.objects.get(token=token)
+    goodsid = request.GET.get('goodsid')
+    goddsid = Imgsrc.objects.get(pk=goodsid)
+    cart = Cart.objects.get(goodsid=goddsid)
+    cart.number = cart.number-1
+    cart.save()
+    JsonData = {
+        'status':1,
+        'msg':'减少商品数量成功',
+        'number':cart.number
+    }
+    return JsonResponse(JsonData)
+
+
+def generateorder(request):
+    return
+
+
+def orderdetail(request):
+    return None

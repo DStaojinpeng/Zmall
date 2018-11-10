@@ -1,4 +1,21 @@
 $(function(){
+
+	$('#addcart').click(function () {
+		var goodsid = $(this).attr('goodsid')
+		console.log(goodsid)
+		$.get('/addcart/',{'goodsid':goodsid},function (response) {
+			console.log(response)
+			if(response.status==1)
+			{
+
+			}
+			else
+			{
+				window.open('/login/',target='_self')
+			}
+        })
+    })
+
 //	car中删除按钮
 //	$(".store").click(function(){
 //				//获取当前行的index 值
@@ -90,7 +107,7 @@ $(function(){
 		location.href = "/car/";
 	})
 	$(".header_list2 li").eq(2).click(function(){
-		window.open("car.html")
+		window.open("order.html")
 	})
 	
 	$(".logo img").hover(function(){
@@ -260,7 +277,7 @@ $(function(){
 				
 				$("#loginPro").click(function(){
 					
-					location.href = "car.html?id=" + 100;
+					location.href = "order.html?id=" + 100;
 //					location.href = "car.html";
 				})
 				$("#loginPro").hover(function(){

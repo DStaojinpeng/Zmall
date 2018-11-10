@@ -15,9 +15,33 @@ class Imgsrc(models.Model):
     src = models.CharField(max_length=256)
     title = models.CharField(max_length=256,default='')
     discribe = models.CharField(max_length=256,default='')
-    price = models.CharField(max_length=20,default="￥0")
-    pPirice = models.CharField(max_length=20,default="￥0")
+    price = models.CharField(max_length=20,default="0")
+    pPirice = models.CharField(max_length=20,default="0")
     sale = models.CharField(max_length=20,default="0")
     person = models.CharField(max_length=10,default="0")
     number = models.IntegerField()
+    isselect = models.BooleanField(default=False)
+
+
+class Cart(models.Model):
+    user = models.ForeignKey(User)
+    goodsid = models.ForeignKey(Imgsrc)
+    number = models.IntegerField(default=1)
+    isselect = models.BooleanField(default=False)
+
+
+class Generate_order(models.Model):
+    orderNum = models.CharField(max_length=256)
+    orderStatus = models.IntegerField(default=1)
+    user = models.ForeignKey(User)
+    price = models.IntegerField()
+    count = models.IntegerField()
+
+
+class Orderdetail(models.Model):
+    orderNum = models.ForeignKey(Generate_order)
+    goods = models.ForeignKey(Imgsrc)
+    goodsNum = models.IntegerField()
+    isselect = models.BooleanField(default=False)
+
 

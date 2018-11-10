@@ -205,6 +205,7 @@ body{
 }
 .content .ulHead .store{
 	width: 70px;
+	/*text-align: center;*/
 	/*border-right: 1px #E6E6E6 solid ;*/
 }
 /*商品列表*/
@@ -262,7 +263,7 @@ body{
 	border: 1px solid #E6E6E6;
 	margin-left: 40px;
 }
-.content .godS .ulgoodlist .classNum .classNumD .minus,.content .godS .ulgoodlist .classNum .classNumD .plus{
+.content .godS .ulgoodlist .classNum .classNumD #minus,.content .godS .ulgoodlist .classNum .classNumD #plus{
 	width: 24px;
 	height: 24px;
 	background: #F8F8F8;
@@ -295,6 +296,8 @@ body{
 	height: 60px;
 	line-height: 60px;
 }
+/*.content .godS .ulgoodlist .store input{*/
+/*}*/
 .content .godS .ulgoodlist .store{
 	width: 70px;
 	height: 60px;

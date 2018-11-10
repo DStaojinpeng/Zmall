@@ -19,20 +19,21 @@
 				<p>中关村在线旗下网上商城</p>
 			</div>
 			<div class="tishi">
-				没有ZOL商城账号？<a href="register.html">立即注册</a>
+				没有ZOL商城账号？<a href="{% url 'app:register' %}">立即注册</a>
 			</div>
 		</div>
 		<!--内容区域-->
 		<div class="content">
 			<img src="{% static  'img/login/ad2.jpg' %}">
 			<div class="form">
-                <form action="{% url 'app:login' %}" method="post">
+                <form action="{% url 'app:chacklogin' %}" method="post">
                     {% csrf_token %}
 					<h3>登录ZOL商城</h3><span><i></i>手机动态码登录</span>
 					<input type="text" id="uSer" placeholder="手机号/邮箱/用户名" name="tel">
 					<input type="password" id="pAssword" placeholder="密码" name="password">
+                    <i id="passtip"></i>
 				<a href="#">忘记密码?</a>
-				<input type="submit" id="btnLogin" value="登  录">
+				<input type="button" id="btnLogin" value="登  录">
 				<div class="coop">
 					<div class="leftL">
 

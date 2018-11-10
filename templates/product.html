@@ -1,1017 +1,1463 @@
-
 {% load static %}<!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>商品详情</title>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}"/>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
-		<script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{%  static 'js/product.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
-{#        <script src="{% static 'js/text.js' %}" type="text/javascript" charset="utf-8"></script>#}
-	</head>
-	<body>
+<head>
+    <meta charset="UTF-8">
+    <title>商品详情</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/product.css' %}"/>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/footer.css' %}"/>
+    <script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/product.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
+    {#        <script src="{% static 'js/text.js' %}" type="text/javascript" charset="utf-8"></script>#}
+</head>
+<body>
 
-		<!-- ||-->
+<!-- ||-->
 
-		<div class="zhezhao">
-			<div class="tanChuK">
-				<span id="loginCan"></span>
-				<p><i></i><em>您还没有登录,请登录后再添加购物车</em></p>
-				<input type="button" id="loginPro" value="立即登录">
-				<br>
-				<input type="button" id="seeBuy" value="取消">
+<div class="zhezhao">
+    <div class="tanChuK">
+        <span id="loginCan"></span>
+        {% ifequal name 'no' %}
+            <p><i></i><em>您还没有登录,请登录后再添加购物车</em></p>
+            <input type="button" id="loginPro" value="立即登录">
+        {% else %}
+            <p><i></i><em>{{ name }}</em></p>
+        {% endifequal %}
+        <br>
+        <input type="button" id="seeBuy" value="取消">
 
-			</div>
-		</div>
-
-
-
-
-		<div class="header">
-			<ul class="header_list1">
-				<li>ZOL商城</li>
-				<li>
-					收藏
+    </div>
+</div>
 
 
-				</li>
-				<li>订阅团购推荐<em class="sanjiaofu"></em>
-					<div class="mail_box">
-						<p><i>请输入邮箱地址</i></p>
-						<input class="text_search" type="text">
-						<input type="button" id="ensure" value="确定">
-						<p> 推荐时间：每周二、四、六（节假日除外）</p>
-					</div>
-				</li>
-				<li class="last">客服电话：<span>400-678-0068</span></li>
-
-			</ul>
-
-			<ul class="header_list2">
-				<li class="first">您好，欢迎来Z团购物！请<a href="{% url 'app:login' %}">登录</a></li>
-				<li>注册</li>
-				<li>我的订单</li>
-			</ul>
-		</div>
-
-		<!--搜索-->
-		<div class="logoS">
-			<div class="logo">
-				<img src="{% static  'img/product/zol-logo.png' %}">
-			</div>
-			<div class="searchBox">
-				<input class="text" id="searchBox" type="text" value="请输入商品名">
-				<input class="btn" type="button" value="搜 索">
-
-			</div>
-			<div class="server_sure">
-				<ul>
-					<li>
-						<a class="nod_1" href="#"></a>
-						配送保障
-					</li>
-					<li>
-						<a class="nod_2" href="#"></a>
-						无忧退换
-					</li>
-					<li>
-						<a class="nod_3" href="#"></a>
-						服务保障
-					</li>
-				</ul>
-			</div>
-		</div>
-		<!--nav-->
-		<div class="nav">
-			<ul>
-				<li>首页</li>
-				<li>单品团</li>
-				<li>预约团</li>
-				<li>即将开团</li>
-			</ul>
-			<div class="current_brower">
-				最近浏览
-				<span>&gt;</span>
-				<div class="zuijLL">
-					<ul class="listCurrent">
-						<!--<li class="liCurrent">
-							<img src="img/product/current/ChMkJlfI9bSIIka3AACuFP1e8ysAAU66QJ5cLgAAK4s597.jpg"/>
-							<div class="deCurrent">
-								<a>3G+32G 大内存，5.5英寸大屏，核全网通！，PDAF相位对焦，快速充电，TDDI高精度显示，mTouch指纹支付 </a>
-								<span>￥1468</span><del>￥1999 </del>
-							</div>
-						</li>-->
-
-					<li class="liCurrent"><img src="{% static  'img/group/list01.jpg/' %}"><div class="deCurrent"><a>DASH闪充，骁龙820，6GB+64GB,美拍，0.2S指纹识别，EIS电子防抖</a><span>￥2888</span><del>￥￥3159</del></div></li></ul>
-					<div class="lastCurrent">
-						清空最近浏览记录
-					</div>
-				</div>
-			</div>
-
-		</div>
-		<!--一加手机-->
-		<div class="goods_descript_yijia">
-			<div class="goods_class">
-				手机通讯 &gt;{{ good.title }}
-			</div>
-			<div class="pic_text">
-				<div class="pic">
-					<!--放大镜效果-->
-					<div class="smallImg">
-						<img src="{% static good.src %}">
-                		<div class="smallArea" style="width: 166.667px; height: 166.667px;"></div>
-					</div>
-					<div class="bigArea" style="">
-		                <img class="bigImg" src="{% static good.src %}">
-		            </div>
+<div class="header">
+    <ul class="header_list1">
+        <li>ZOL商城</li>
+        <li>
+            收藏
 
 
-					<div class="other">
-						<i class="nod_1"></i><span>全新正品</span>
-						<i class="nod_2"></i><span>品质保障</span>
-						<i class="nod_3"></i><span>分享</span>
-						<i class="nod_4"></i><span>手机下单</span>
+        </li>
+        <li>订阅团购推荐<em class="sanjiaofu"></em>
+            <div class="mail_box">
+                <p><i>请输入邮箱地址</i></p>
+                <input class="text_search" type="text">
+                <input type="button" id="ensure" value="确定">
+                <p> 推荐时间：每周二、四、六（节假日除外）</p>
+            </div>
+        </li>
+        <li class="last">客服电话：<span>400-678-0068</span></li>
 
-					</div>
-				</div>
-				<div class="text">
-					<div class="up">
-						<h2>{{ good.title }}</h2>
-						<p class="small">{{ good.discribe }}</p>
-						<p><span>现货！</span><span>限量</span><span>成都3环内3小时送达！</span></p>
-					</div>
-					<div class="price">
-						<h1>{{ good.price }}</h1>
-						<del>{{ good.pPrice }}</del>
-						<span>{{ good.sale }}</span>
-					</div>
-					<ul>
-						<li><span>137</span>人购买</li>
-						<li>暂无评价</li>
+    </ul>
 
+    <ul class="header_list2">
+        {% ifequal name 'no'%}
+            <li class="first">您好，欢迎来Z团购物！请<a href="{% url 'app:login' %}">登录</a></li>
+        {% else %}
+            <li class="first">{{ name }}</li>
 
-					</ul>
-					<input type="button" class="buy_btn" value="立即抢购">
-					<div class="cout_down">
-						<i></i>
-						剩余：
-						<!--<span id="time"></span>-->
-						<span class="D"></span>天
-						<span class="H"></span>时
-						<span class="M"></span>分
-						<span class="S"></span>秒
+        {% endifequal %}
+        <li>注册</li>
+        <li>我的订单</li>
+    </ul>
+</div>
 
-					</div>
-				</div>
-			</div>
+<!--搜索-->
+<div class="logoS">
+    <div class="logo">
+        <img src="{% static  'img/product/zol-logo.png' %}">
+    </div>
+    <div class="searchBox">
+        <input class="text" id="searchBox" type="text" value="请输入商品名">
+        <input class="btn" type="button" value="搜 索">
 
+    </div>
+    <div class="server_sure">
+        <ul>
+            <li>
+                <a class="nod_1" href="#"></a>
+                配送保障
+            </li>
+            <li>
+                <a class="nod_2" href="#"></a>
+                无忧退换
+            </li>
+            <li>
+                <a class="nod_3" href="#"></a>
+                服务保障
+            </li>
+        </ul>
+    </div>
+</div>
+<!--nav-->
+<div class="nav">
+    <ul>
+        <li>首页</li>
+        <li>单品团</li>
+        <li>预约团</li>
+        <li>即将开团</li>
+    </ul>
+    <div class="current_brower">
+        最近浏览
+        <span>&gt;</span>
+        <div class="zuijLL">
+            <ul class="listCurrent">
+                <!--<li class="liCurrent">
+                    <img src="img/product/current/ChMkJlfI9bSIIka3AACuFP1e8ysAAU66QJ5cLgAAK4s597.jpg"/>
+                    <div class="deCurrent">
+                        <a>3G+32G 大内存，5.5英寸大屏，核全网通！，PDAF相位对焦，快速充电，TDDI高精度显示，mTouch指纹支付 </a>
+                        <span>￥1468</span><del>￥1999 </del>
+                    </div>
+                </li>-->
 
+                <li class="liCurrent"><img src="{% static  'img/group/list01.jpg/' %}">
+                    <div class="deCurrent"><a>DASH闪充，骁龙820，6GB+64GB,美拍，0.2S指纹识别，EIS电子防抖</a><span>￥2888</span>
+                        <del>￥￥3159</del>
+                    </div>
+                </li>
+            </ul>
+            <div class="lastCurrent">
+                清空最近浏览记录
+            </div>
+        </div>
+    </div>
 
-		</div>
-
-		<ul class="server_sure_yijia">
-				<li>
-					<div class="tip nod_1 "></div>
-					<div class="des">
-						<h4>行货保证</h4>
-						<p> 所售商品为正品行货</p>
-					</div>
-				</li>
-				<li>
-					<div class="tip nod_2"></div>
-					<div class="des">
-						<h4>先行赔付</h4>
-						<p>ZOL保障您的合法权益</p>
-					</div>
-				</li>
-				<li>
-					<div class="tip nod_3"></div>
-					<div class="des">
-						<h4>如实描述</h4>
-						<p>卖家对商品描述负责</p>
-					</div>
-				</li>
-				<li>
-					<div class="tip nod_4"></div>
-					<div class="des">
-						<h4>24h发货</h4>
-						<p>付款后24小时发货</p>
-					</div>
-				</li>
-				<li>
-					<div class="tip nod_5"></div>
-					<div class="des">
-						<h4>无忧退换</h4>
-						<p>7天可退，15天可换</p>
-					</div>
-				</li>
-
-		</ul>
-
-
-
-		<!--详情介绍-->
-		<div class="minBig">
-
-					<!--意见反馈      右下角-->
-				<div class="yijian" id="yijianTop">
-					<div class="up1">
-						<i></i>
-					</div>
-					<div class="down2">
-						意见反馈
-					</div>
-
-				</div>
-		<div class="main">
-
-			<div class="left_pro">
-				<ul class="list_nav" id="listTop">
-					<li>购买须知</li>
-					<li>产品介绍</li>
-					<li>产品参数</li>
-					<li>产品口碑</li>
-					<li>包装清单</li>
-					<li>售后服务</li>
-					<li class="lastDisN">
-						<div class="displayNav">
-							<span id="price1">￥1499</span>
-							<button id="cBuy">立即购买</button>
-						</div>
-					</li>
-
-				</ul>
-				<!--购买须知-->
-				<div class="buy_know li_bl">
-					<div class="smallTitle">
-						<h4>购买须知</h4>
-					</div>
-					<ul class="content">
-						<li><b>发货地区:</b><span>四川</span>	</li>
-						<li><b>发货时间:</b><span>16：00前订单当日发货，16:00以后订单次日发货，订单量大时会有延迟，成都3环内3小时送达！</span>	</li>
-						<li><b>运费:</b><span> 免运费</span>	</li>
-						<li><b>配送说明:</b><span>【成都市区3环内3小时送达】默认顺丰快递包邮（港澳台地区不发货），周一至周五，16点以前订单当天发货，16点之后的第二天发货，订单量大时会有延迟。</span>	</li>
-						<li><b>发票:</b><span>含发票</span>	</li>
-						<li><b>其他说明:</b><span>黑色售价：2888元； 金色售价：3099元；</span>	</li>
-    				</ul>
-				</div>
-
-				<!--Z团推荐-->
-				<div class="Ztuan_rec">
-					<div class="smallTitle">
-						<h4>Z团推荐</h4>
-					</div>
-
-					<p>
-						一加3采用2.2GHz的高通820处理器，三星AMOLED 5.5英寸1080P显示屏，6GB LPDDR4内存和64GB UFS2.0闪存，搭载DASH闪充，0.2s极速指纹识别，后置索尼IMX298 1600W像素主摄像头，支持双卡双待、全网通/4G+网络及volte语音通话。配置惊人
-					</p>
-					<span></span>
-				</div>
+</div>
+<!--一加手机-->
+<div class="goods_descript_yijia">
+    <div class="goods_class">
+        手机通讯 &gt;{{ good.title }}
+    </div>
+    <div class="pic_text">
+        <div class="pic">
+            <!--放大镜效果-->
+            <div class="smallImg">
+                <img src="{% static good.src %}">
+                <div class="smallArea" style="width: 166.667px; height: 166.667px;"></div>
+            </div>
+            <div class="bigArea" style="">
+                <img class="bigImg" src="{% static good.src %}">
+            </div>
 
 
-				<!--产品介绍-->
-				<div class="intro_in_pro li_bl">
-					<div class="smallTitle">
-						<h4>产品介绍</h4>
-					</div>
-					<div class="pic_yijia">
-						<img src="{% static  'img/product/ChMkJldhTqyINcAuAALzPyjZHJgAASpBAL2xmgAAvNX073.jpg' %}">
-						<img src="{% static  'img/product/ChMkJldhTq2IeURzAAMuhfinT4YAASpBAL5ub8AAy6d374.jpg' %}">
-						<img src="{% static  'img/product/ChMkJ1dhTq6IXoLlAADo7aHaDzMAASpBAL8-OQAAOkF799.jpg' %}">
-						<img src="{% static  'img/product/ChMkJ1dhTq-IJ0y7AALHTz-fUw8AASpBAL94ekAAsdn596.jpg' %}">
-						<img src="{% static  'img/product/ChMkJldhTrCIUoHIAALOo0azTMgAASpBAMVrXkAAs67258.jpg' %}">
-						<img src="{% static  'img/product/ChMkJ1dhTrGIcp5BAAKTdX7P3uYAASpBAMeoPgAApON467.jpg' %}">
-						<img src="{% static  'img/product/ChMkJldhTrOIfmCSAAMaB0TORkQAASpBAMiSgsAAxof466.jpg' %}">
-						<img src="{% static  'img/product/ChMkJ1dhTrSIbqKTAAErUmfZvjoAASpBAMsuNAAAStq657.jpg' %}">
-						<img src="{% static  'img/product/ChMkJldhTrWIf7b2AAEgMHErgQoAASpBAMt5DoAASBI674.jpg' %}">
-						<img src="{% static  'img/product/ChMkJldhTraICFNOAAPyLr_YrPcAASpBANKvVIAA_JG882.jpg' %}">
-						<img src="{% static  'img/product/ChMkJldhTreIRTcmAAL2XXuzR-kAASpBANOr5gAAvZ1365.jpg' %}">
-						<img src="{% static  'img/product/ChMkJ1dhTriIdvs8AAIhWjU0XwoAASpBANS9TMAAiFy810.jpg' %}">
-						<img src="{% static  'img/product/ChMkJldhTrqIDNhwAANJMtsi1WIAASpBANbiwoAA0lK219.jpg' %}">
-						<img src="{% static  'img/product/ChMkJldhTruIJs_UAAJACSraVW4AASpBANgkf8AAkAh094.jpg' %}">
-						<img src="{% static  'img/product/ChMkJldhTryIO1KOAAEct69MlH4AASpBAOHVy0AARzP994.jpg' %}">
+            <div class="other">
+                <i class="nod_1"></i><span>全新正品</span>
+                <i class="nod_2"></i><span>品质保障</span>
+                <i class="nod_3"></i><span>分享</span>
+                <i class="nod_4"></i><span>手机下单</span>
 
-					</div>
-
+            </div>
+        </div>
+        <div class="text">
+            <div class="up">
+                <h2>{{ good.title }}</h2>
+                <p class="small">{{ good.discribe }}</p>
+                <p><span>现货！</span><span>限量</span><span>成都3环内3小时送达！</span></p>
+            </div>
+            <div class="price">
+                <h1>{{ good.price }}</h1>
+                <del>{{ good.pPrice }}</del>
+                <span>{{ good.sale }}</span>
+            </div>
+            <ul>
+                <li><span>137</span>人购买</li>
+                <li>暂无评价</li>
 
 
-					<table class="t_head" cellspacing="" cellpadding="" border="0">
-						<tbody><tr>
-							<td>
-								<h5>一加3手机（全网通）</h5>
+            </ul>
+            <input type="button" class="buy_btn" value="加入购物车" id="addcart" goodsid="{{ good.id }}">
+            <div class="cout_down">
+                <i></i>
+                剩余：
+                <!--<span id="time"></span>-->
+                <span class="D"></span>天
+                <span class="H"></span>时
+                <span class="M"></span>分
+                <span class="S"></span>秒
 
-							</td>
-						</tr>
-						<tr>
-							<td>
-
-								<p>参数规格</p>
-							</td>
-							<td>
-						        <span>查看：<a href="#">更多信息</a>或<a href="#">更多图片</a></span>
-							</td>
-						</tr>
-					</tbody></table>
+            </div>
+        </div>
+    </div>
 
 
-					<!--参数区-->
-					<table class="canShu" width="100%" cellspacing="1" cellpadding="0" border="0">
+</div>
 
-						<tbody><tr style="background: #f2f7fd;font-weight: bold;"><td>基本参数</td><td></td></tr>
-						<tr><td>上市日期</td><td>2016年06月</td></tr>
-						<tr><td>手机类型</td><td>4G手机，3G手机，智能手机，平板手机，拍照手机，快充手机</td></tr>
+<ul class="server_sure_yijia">
+    <li>
+        <div class="tip nod_1 "></div>
+        <div class="des">
+            <h4>行货保证</h4>
+            <p> 所售商品为正品行货</p>
+        </div>
+    </li>
+    <li>
+        <div class="tip nod_2"></div>
+        <div class="des">
+            <h4>先行赔付</h4>
+            <p>ZOL保障您的合法权益</p>
+        </div>
+    </li>
+    <li>
+        <div class="tip nod_3"></div>
+        <div class="des">
+            <h4>如实描述</h4>
+            <p>卖家对商品描述负责</p>
+        </div>
+    </li>
+    <li>
+        <div class="tip nod_4"></div>
+        <div class="des">
+            <h4>24h发货</h4>
+            <p>付款后24小时发货</p>
+        </div>
+    </li>
+    <li>
+        <div class="tip nod_5"></div>
+        <div class="des">
+            <h4>无忧退换</h4>
+            <p>7天可退，15天可换</p>
+        </div>
+    </li>
 
-						<tr style="background: #f2f7fd;font-weight: bold;"><td>屏幕</td><td></td></tr>
-						<tr><td>触摸屏类型</td><td>电容屏，多点触控</td></tr>
-						<tr><td>主屏尺寸</td><td>5.5英寸</td></tr>
-						<tr><td>主屏材质</td><td>AMOLED</td></tr>
-						<tr><td>主屏分辨率</td><td>920x1080像素</td></tr>
-						<tr><td>屏幕像素密度</td><td>401ppi</td></tr>
-						<tr><td>屏幕技术</td><td>第四代康宁大猩猩玻璃</td></tr>
-						<tr><td>窄边框</td><td>3.11mm</td></tr>
-						<tr><td>屏幕占比</td><td>73.11%</td></tr>
-						<tr><td>其他屏幕参数</td><td>2.5D玻璃</td></tr>
-
-
-						<tr style="background: #f2f7fd;font-weight: bold;"><td>网络</td><td></td></tr>
-						<tr><td>网络类型</td><td>双卡，全网通</td></tr>
-						<tr><td>4G网络</td><td>移动TD-LTE，联通TD-LTE，联通FDD-LTE，电信TD-LTE，电信FDD-LTE</td></tr>
-						<tr><td>3G网络</td><td>移动3G（TD-SCDMA），联通3G（WCDMA），电信3G（CDMA2000），联通2G/移动2G（GSM）</td></tr>
-						<tr><td>WLAN功能</td><td>双频WIFI，IEEE 802.11 a/b/g/n/ac</td></tr>
-						<tr><td>导航</td><td>GPS导航，GLONASS导航，北斗导航</td></tr>
-						<tr><td>连接与共享</td><td>NFC，WLAN热点，蓝牙4.2，VoLTE</td></tr>
-						<tr><td>其他网络参数</td><td>4G+</td></tr>
-
-						<tr style="background: #f2f7fd;font-weight: bold;"><td>硬件</td><td></td></tr>
-						<tr><td>操作系统</td><td>H2 OS 1.4（基于Android OS 6.0）</td></tr>
-						<tr><td>核心数</td><td>四核</td></tr>
-						<tr><td>CPU型号</td><td>高通 骁龙820（MSM8996）</td></tr>
-						<tr><td>CPU频率</td><td>2.2GHz（大二核），1.6GHz（小二核）</td></tr>
-						<tr><td>GPU型号</td><td>高通 Adreno530</td></tr>
-						<tr><td>处理器位数</td><td>64位</td></tr>
-						<tr><td>RAM容量</td><td>6GB</td></tr>
-						<tr><td>ROM容量</td><td>64GB</td></tr>
-						<tr><td>电池类型</td><td>不可拆卸式电池</td></tr>
-						<tr><td>电池容量</td><td>3000mAh</td></tr>
-						<tr><td>其他硬件参数</td><td>支持快速充电</td></tr>
-
-						<tr style="background: #f2f7fd; font-weight: bold;"><td>摄像头</td><td></td></tr>
-						<tr><td>摄像头</td><td>内置</td></tr>
-						<tr><td>摄像头类型</td><td>双摄像头（前后）</td></tr>
-						<tr><td>后置摄像头</td><td>1600万像素</td></tr>
-						<tr><td>前置摄像头</td><td>800万像素</td></tr>
-						<tr><td>传感器类型</td><td>CMOS</td></tr>
-						<tr><td>闪光灯</td><td>LED补光灯</td></tr>
-						<tr><td>光圈</td><td>主f/2.0，副f/2.0</td></tr>
-						<tr><td>视频拍摄</td><td>4K（3840x2160，30帧/秒）视频录制</td></tr>
-						<tr><td>拍照功能</td><td>OIS光学防抖，EIS电子防抖，相位对焦</td></tr>
-						<tr><td>其他摄像头参数</td><td>索尼IMX298</td></tr>
-
-						<tr style="background: #f2f7fd; font-weight: bold;"><td>外观</td><td></td></tr>
-						<tr><td>造型设计</td><td>直板</td></tr>
-						<tr><td>机身颜色</td><td>薄荷金，冰川灰</td></tr>
-						<tr><td>手机尺寸</td><td>152.7x74.7x7.35mm</td></tr>
-						<tr><td>手机重量</td><td>158g</td></tr>
-						<tr><td>机身材质</td><td>金属机身</td></tr>
-						<tr><td>操作类型</td><td>触控按键</td></tr>
-						<tr><td>感应器类型</td><td>指纹传感器，霍尔感应器，加速度传感器，陀螺仪，距离感应器，环境光传感器，电子罗盘</td></tr>
-						<tr><td>SIM卡类型</td><td>Nano SIM卡</td></tr>
-						<tr><td>机身接口</td><td>3.5mm耳机接口，USB Type-C接口</td></tr>
-
-						<tr style="background: #f2f7fd;font-weight: bold;"><td>服务与支持</td><td></td></tr>
-						<tr><td>音频支持</td><td>支持WAV/AAC/AAC+/eAAC+/MP3/WMA/AMR/FLAC/ALAC/APE/AIFF/OGG/MIDI等格式</td></tr>
-						<tr><td>视频支持</td><td>支持HEVC/WMV/AVI/MKV/MOV/3GP/MP4/FLV/HLS等</td></tr>
-						<tr><td>图片支持</td><td>支持JPEG/PNG/GIF/BMP等格式</td></tr>
-						<tr><td>常用功能</td><td>计算器，日程表，记事本，电子书，闹钟，日历，手电筒，录音机，情景模式，主题模式，地图软件</td></tr>
-						<tr><td>服务特色</td><td>声纹识别</td></tr>
-
-						<tr style="background: #f2f7fd;font-weight: bold;"><td>手机附件</td><td></td></tr>
-						<tr><td></td><td>主机 x1</td></tr>
-						<tr><td></td><td>数据线 x1</td></tr>
-						<tr><td>包装清单</td><td>充电器 x1</td></tr>
-						<tr><td></td><td>通针 x1</td></tr>
-						<tr><td></td><td>快速上手指南 x1</td></tr>
-						<tr><td></td><td>产品重要信息与保修卡 x1</td></tr>
+</ul>
 
 
-						<tr style="background: #f2f7fd;font-weight: bold;"><td>保修信息</td><td></td></tr>
-						<tr><td>保修政策</td><td>全国联保，享受三包服务</td></tr>
-						<tr><td>质保时间</td><td>1年</td></tr>
-						<tr><td>质保备注</td><td>主机1年，充电器1年</td></tr>
-						<tr><td>客服电话</td><td>400-888-1111</td></tr>
-						<tr><td>电话备注</td><td>24小时在线服务</td></tr>
-						<tr><td>详细内容</td><td>自购机日起（以购机发票为准），如因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，30日内换货，30日以上在质保期内享受免费保修等三包服务！注：单独购买手机配件产品的用户，请完好保存配件外包装以及发票原件，如无法提供上述凭证的，将无法进行正常的配件保修或更换。</td></tr>
+<!--详情介绍-->
+<div class="minBig">
 
-					</tbody></table>
-					<div>
-						<img src="{% static  'img/product/ChMkJ1etrvKILSD1AAnrjtC2LRUAAUYjQD1foEACeum052.jpg' %}">
-						<img src="{% static  'img/product/ChMkJ1e9Y8yIWBI6AAYvbHEr_CEAAUsIgM-C1EABi-E832.jpg' %}">
-					</div>
+    <!--意见反馈      右下角-->
+    <div class="yijian" id="yijianTop">
+        <div class="up1">
+            <i></i>
+        </div>
+        <div class="down2">
+            意见反馈
+        </div>
 
-				</div>
+    </div>
+    <div class="main">
+
+        <div class="left_pro">
+            <ul class="list_nav" id="listTop">
+                <li>购买须知</li>
+                <li>产品介绍</li>
+                <li>产品参数</li>
+                <li>产品口碑</li>
+                <li>包装清单</li>
+                <li>售后服务</li>
+                <li class="lastDisN">
+                    <div class="displayNav">
+                        <span id="price1">￥1499</span>
+                        <button id="cBuy">立即购买</button>
+                    </div>
+                </li>
+
+            </ul>
+            <!--购买须知-->
+            <div class="buy_know li_bl">
+                <div class="smallTitle">
+                    <h4>购买须知</h4>
+                </div>
+                <ul class="content">
+                    <li><b>发货地区:</b><span>四川</span></li>
+                    <li><b>发货时间:</b><span>16：00前订单当日发货，16:00以后订单次日发货，订单量大时会有延迟，成都3环内3小时送达！</span></li>
+                    <li><b>运费:</b><span> 免运费</span></li>
+                    <li>
+                        <b>配送说明:</b><span>【成都市区3环内3小时送达】默认顺丰快递包邮（港澳台地区不发货），周一至周五，16点以前订单当天发货，16点之后的第二天发货，订单量大时会有延迟。</span>
+                    </li>
+                    <li><b>发票:</b><span>含发票</span></li>
+                    <li><b>其他说明:</b><span>黑色售价：2888元； 金色售价：3099元；</span></li>
+                </ul>
+            </div>
+
+            <!--Z团推荐-->
+            <div class="Ztuan_rec">
+                <div class="smallTitle">
+                    <h4>Z团推荐</h4>
+                </div>
+
+                <p>
+                    一加3采用2.2GHz的高通820处理器，三星AMOLED 5.5英寸1080P显示屏，6GB LPDDR4内存和64GB
+                    UFS2.0闪存，搭载DASH闪充，0.2s极速指纹识别，后置索尼IMX298 1600W像素主摄像头，支持双卡双待、全网通/4G+网络及volte语音通话。配置惊人
+                </p>
+                <span></span>
+            </div>
 
 
+            <!--产品介绍-->
+            <div class="intro_in_pro li_bl">
+                <div class="smallTitle">
+                    <h4>产品介绍</h4>
+                </div>
+                <div class="pic_yijia">
+                    <img src="{% static  'img/product/ChMkJldhTqyINcAuAALzPyjZHJgAASpBAL2xmgAAvNX073.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJldhTq2IeURzAAMuhfinT4YAASpBAL5ub8AAy6d374.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJ1dhTq6IXoLlAADo7aHaDzMAASpBAL8-OQAAOkF799.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJ1dhTq-IJ0y7AALHTz-fUw8AASpBAL94ekAAsdn596.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJldhTrCIUoHIAALOo0azTMgAASpBAMVrXkAAs67258.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJ1dhTrGIcp5BAAKTdX7P3uYAASpBAMeoPgAApON467.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJldhTrOIfmCSAAMaB0TORkQAASpBAMiSgsAAxof466.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJ1dhTrSIbqKTAAErUmfZvjoAASpBAMsuNAAAStq657.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJldhTrWIf7b2AAEgMHErgQoAASpBAMt5DoAASBI674.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJldhTraICFNOAAPyLr_YrPcAASpBANKvVIAA_JG882.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJldhTreIRTcmAAL2XXuzR-kAASpBANOr5gAAvZ1365.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJ1dhTriIdvs8AAIhWjU0XwoAASpBANS9TMAAiFy810.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJldhTrqIDNhwAANJMtsi1WIAASpBANbiwoAA0lK219.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJldhTruIJs_UAAJACSraVW4AASpBANgkf8AAkAh094.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJldhTryIO1KOAAEct69MlH4AASpBAOHVy0AARzP994.jpg' %}">
 
-				<!--产品参数-->
-				<div class="proCanshu li_bl">
-					<div class="smallTitle">
-						<h4>产品参数</h4>
-					</div>
+                </div>
 
-					<div class="shengMing">
+
+                <table class="t_head" cellspacing="" cellpadding="" border="0">
+                    <tbody>
+                    <tr>
+                        <td>
+                            <h5>一加3手机（全网通）</h5>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td>
+
+                            <p>参数规格</p>
+                        </td>
+                        <td>
+                            <span>查看：<a href="#">更多信息</a>或<a href="#">更多图片</a></span>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+
+
+                <!--参数区-->
+                <table class="canShu" width="100%" cellspacing="1" cellpadding="0" border="0">
+
+                    <tbody>
+                    <tr style="background: #f2f7fd;font-weight: bold;">
+                        <td>基本参数</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>上市日期</td>
+                        <td>2016年06月</td>
+                    </tr>
+                    <tr>
+                        <td>手机类型</td>
+                        <td>4G手机，3G手机，智能手机，平板手机，拍照手机，快充手机</td>
+                    </tr>
+
+                    <tr style="background: #f2f7fd;font-weight: bold;">
+                        <td>屏幕</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>触摸屏类型</td>
+                        <td>电容屏，多点触控</td>
+                    </tr>
+                    <tr>
+                        <td>主屏尺寸</td>
+                        <td>5.5英寸</td>
+                    </tr>
+                    <tr>
+                        <td>主屏材质</td>
+                        <td>AMOLED</td>
+                    </tr>
+                    <tr>
+                        <td>主屏分辨率</td>
+                        <td>920x1080像素</td>
+                    </tr>
+                    <tr>
+                        <td>屏幕像素密度</td>
+                        <td>401ppi</td>
+                    </tr>
+                    <tr>
+                        <td>屏幕技术</td>
+                        <td>第四代康宁大猩猩玻璃</td>
+                    </tr>
+                    <tr>
+                        <td>窄边框</td>
+                        <td>3.11mm</td>
+                    </tr>
+                    <tr>
+                        <td>屏幕占比</td>
+                        <td>73.11%</td>
+                    </tr>
+                    <tr>
+                        <td>其他屏幕参数</td>
+                        <td>2.5D玻璃</td>
+                    </tr>
+
+
+                    <tr style="background: #f2f7fd;font-weight: bold;">
+                        <td>网络</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>网络类型</td>
+                        <td>双卡，全网通</td>
+                    </tr>
+                    <tr>
+                        <td>4G网络</td>
+                        <td>移动TD-LTE，联通TD-LTE，联通FDD-LTE，电信TD-LTE，电信FDD-LTE</td>
+                    </tr>
+                    <tr>
+                        <td>3G网络</td>
+                        <td>移动3G（TD-SCDMA），联通3G（WCDMA），电信3G（CDMA2000），联通2G/移动2G（GSM）</td>
+                    </tr>
+                    <tr>
+                        <td>WLAN功能</td>
+                        <td>双频WIFI，IEEE 802.11 a/b/g/n/ac</td>
+                    </tr>
+                    <tr>
+                        <td>导航</td>
+                        <td>GPS导航，GLONASS导航，北斗导航</td>
+                    </tr>
+                    <tr>
+                        <td>连接与共享</td>
+                        <td>NFC，WLAN热点，蓝牙4.2，VoLTE</td>
+                    </tr>
+                    <tr>
+                        <td>其他网络参数</td>
+                        <td>4G+</td>
+                    </tr>
+
+                    <tr style="background: #f2f7fd;font-weight: bold;">
+                        <td>硬件</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>操作系统</td>
+                        <td>H2 OS 1.4（基于Android OS 6.0）</td>
+                    </tr>
+                    <tr>
+                        <td>核心数</td>
+                        <td>四核</td>
+                    </tr>
+                    <tr>
+                        <td>CPU型号</td>
+                        <td>高通 骁龙820（MSM8996）</td>
+                    </tr>
+                    <tr>
+                        <td>CPU频率</td>
+                        <td>2.2GHz（大二核），1.6GHz（小二核）</td>
+                    </tr>
+                    <tr>
+                        <td>GPU型号</td>
+                        <td>高通 Adreno530</td>
+                    </tr>
+                    <tr>
+                        <td>处理器位数</td>
+                        <td>64位</td>
+                    </tr>
+                    <tr>
+                        <td>RAM容量</td>
+                        <td>6GB</td>
+                    </tr>
+                    <tr>
+                        <td>ROM容量</td>
+                        <td>64GB</td>
+                    </tr>
+                    <tr>
+                        <td>电池类型</td>
+                        <td>不可拆卸式电池</td>
+                    </tr>
+                    <tr>
+                        <td>电池容量</td>
+                        <td>3000mAh</td>
+                    </tr>
+                    <tr>
+                        <td>其他硬件参数</td>
+                        <td>支持快速充电</td>
+                    </tr>
+
+                    <tr style="background: #f2f7fd; font-weight: bold;">
+                        <td>摄像头</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>摄像头</td>
+                        <td>内置</td>
+                    </tr>
+                    <tr>
+                        <td>摄像头类型</td>
+                        <td>双摄像头（前后）</td>
+                    </tr>
+                    <tr>
+                        <td>后置摄像头</td>
+                        <td>1600万像素</td>
+                    </tr>
+                    <tr>
+                        <td>前置摄像头</td>
+                        <td>800万像素</td>
+                    </tr>
+                    <tr>
+                        <td>传感器类型</td>
+                        <td>CMOS</td>
+                    </tr>
+                    <tr>
+                        <td>闪光灯</td>
+                        <td>LED补光灯</td>
+                    </tr>
+                    <tr>
+                        <td>光圈</td>
+                        <td>主f/2.0，副f/2.0</td>
+                    </tr>
+                    <tr>
+                        <td>视频拍摄</td>
+                        <td>4K（3840x2160，30帧/秒）视频录制</td>
+                    </tr>
+                    <tr>
+                        <td>拍照功能</td>
+                        <td>OIS光学防抖，EIS电子防抖，相位对焦</td>
+                    </tr>
+                    <tr>
+                        <td>其他摄像头参数</td>
+                        <td>索尼IMX298</td>
+                    </tr>
+
+                    <tr style="background: #f2f7fd; font-weight: bold;">
+                        <td>外观</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>造型设计</td>
+                        <td>直板</td>
+                    </tr>
+                    <tr>
+                        <td>机身颜色</td>
+                        <td>薄荷金，冰川灰</td>
+                    </tr>
+                    <tr>
+                        <td>手机尺寸</td>
+                        <td>152.7x74.7x7.35mm</td>
+                    </tr>
+                    <tr>
+                        <td>手机重量</td>
+                        <td>158g</td>
+                    </tr>
+                    <tr>
+                        <td>机身材质</td>
+                        <td>金属机身</td>
+                    </tr>
+                    <tr>
+                        <td>操作类型</td>
+                        <td>触控按键</td>
+                    </tr>
+                    <tr>
+                        <td>感应器类型</td>
+                        <td>指纹传感器，霍尔感应器，加速度传感器，陀螺仪，距离感应器，环境光传感器，电子罗盘</td>
+                    </tr>
+                    <tr>
+                        <td>SIM卡类型</td>
+                        <td>Nano SIM卡</td>
+                    </tr>
+                    <tr>
+                        <td>机身接口</td>
+                        <td>3.5mm耳机接口，USB Type-C接口</td>
+                    </tr>
+
+                    <tr style="background: #f2f7fd;font-weight: bold;">
+                        <td>服务与支持</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>音频支持</td>
+                        <td>支持WAV/AAC/AAC+/eAAC+/MP3/WMA/AMR/FLAC/ALAC/APE/AIFF/OGG/MIDI等格式</td>
+                    </tr>
+                    <tr>
+                        <td>视频支持</td>
+                        <td>支持HEVC/WMV/AVI/MKV/MOV/3GP/MP4/FLV/HLS等</td>
+                    </tr>
+                    <tr>
+                        <td>图片支持</td>
+                        <td>支持JPEG/PNG/GIF/BMP等格式</td>
+                    </tr>
+                    <tr>
+                        <td>常用功能</td>
+                        <td>计算器，日程表，记事本，电子书，闹钟，日历，手电筒，录音机，情景模式，主题模式，地图软件</td>
+                    </tr>
+                    <tr>
+                        <td>服务特色</td>
+                        <td>声纹识别</td>
+                    </tr>
+
+                    <tr style="background: #f2f7fd;font-weight: bold;">
+                        <td>手机附件</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>主机 x1</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>数据线 x1</td>
+                    </tr>
+                    <tr>
+                        <td>包装清单</td>
+                        <td>充电器 x1</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>通针 x1</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>快速上手指南 x1</td>
+                    </tr>
+                    <tr>
+                        <td></td>
+                        <td>产品重要信息与保修卡 x1</td>
+                    </tr>
+
+
+                    <tr style="background: #f2f7fd;font-weight: bold;">
+                        <td>保修信息</td>
+                        <td></td>
+                    </tr>
+                    <tr>
+                        <td>保修政策</td>
+                        <td>全国联保，享受三包服务</td>
+                    </tr>
+                    <tr>
+                        <td>质保时间</td>
+                        <td>1年</td>
+                    </tr>
+                    <tr>
+                        <td>质保备注</td>
+                        <td>主机1年，充电器1年</td>
+                    </tr>
+                    <tr>
+                        <td>客服电话</td>
+                        <td>400-888-1111</td>
+                    </tr>
+                    <tr>
+                        <td>电话备注</td>
+                        <td>24小时在线服务</td>
+                    </tr>
+                    <tr>
+                        <td>详细内容</td>
+                        <td>
+                            自购机日起（以购机发票为准），如因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，30日内换货，30日以上在质保期内享受免费保修等三包服务！注：单独购买手机配件产品的用户，请完好保存配件外包装以及发票原件，如无法提供上述凭证的，将无法进行正常的配件保修或更换。
+                        </td>
+                    </tr>
+
+                    </tbody>
+                </table>
+                <div>
+                    <img src="{% static  'img/product/ChMkJ1etrvKILSD1AAnrjtC2LRUAAUYjQD1foEACeum052.jpg' %}">
+                    <img src="{% static  'img/product/ChMkJ1e9Y8yIWBI6AAYvbHEr_CEAAUsIgM-C1EABi-E832.jpg' %}">
+                </div>
+
+            </div>
+
+
+            <!--产品参数-->
+            <div class="proCanshu li_bl">
+                <div class="smallTitle">
+                    <h4>产品参数</h4>
+                </div>
+
+                <div class="shengMing">
 						<span>
 						声明：参数仅供参考，以实际销售为准
 						</span>
-					</div>
-
-
-					<div>
-						<p>基本参数</p>
-						 <table cellspacing="0" cellpadding="" border="1">
-						 	<tbody><tr><td>上市日期</td><td>2016年06月</td></tr>
-							<tr><td>手机类型</td><td>4G手机，3G手机，智能手机，平板手机，拍照手机，快充手机</td></tr>
-
-						 </tbody></table>
-					 </div>
-
-					 <div>
-						<p>屏幕</p>
-						 <table cellspacing="0" cellpadding="" border="1">
-						 	<tbody><tr><td>触摸屏类型</td><td>电容屏，多点触控</td></tr>
-							<tr><td>主屏尺寸</td><td>5.5英寸</td></tr>
-							<tr><td>主屏材质</td><td>AMOLED</td></tr>
-							<tr><td>主屏分辨率</td><td>920x1080像素</td></tr>
-							<tr><td>屏幕像素密度</td><td>401ppi</td></tr>
-							<tr><td>屏幕技术</td><td>第四代康宁大猩猩玻璃</td></tr>
-							<tr><td>窄边框</td><td>3.11mm</td></tr>
-							<tr><td>屏幕占比</td><td>73.11%</td></tr>
-							<tr><td>其他屏幕参数</td><td>2.5D玻璃</td></tr>
-
-						 </tbody></table>
-					 </div>
-
-					 <div>
-						<p>网络</p>
-						 <table cellspacing="0" cellpadding="" border="1">
-						 	<tbody><tr><td>网络类型</td><td>双卡，全网通</td></tr>
-							<tr><td>4G网络</td><td>移动TD-LTE，联通TD-LTE，联通FDD-LTE，电信TD-LTE，电信FDD-LTE</td></tr>
-							<tr><td>3G网络</td><td>移动3G（TD-SCDMA），联通3G（WCDMA），电信3G（CDMA2000），联通2G/移动2G（GSM）</td></tr>
-							<tr><td>WLAN功能</td><td>双频WIFI，IEEE 802.11 a/b/g/n/ac</td></tr>
-							<tr><td>导航</td><td>GPS导航，GLONASS导航，北斗导航</td></tr>
-							<tr><td>连接与共享</td><td>NFC，WLAN热点，蓝牙4.2，VoLTE</td></tr>
-							<tr><td>其他网络参数</td><td>4G+</td></tr>
-
-						 </tbody></table>
-					 </div>
-
-					 <div>
-						<p>硬件</p>
-						 <table cellspacing="0" cellpadding="" border="1">
-						 	<tbody><tr><td>操作系统</td><td>H2 OS 1.4（基于Android OS 6.0）</td></tr>
-							<tr><td>核心数</td><td>四核</td></tr>
-							<tr><td>CPU型号</td><td>高通 骁龙820（MSM8996）</td></tr>
-							<tr><td>CPU频率</td><td>2.2GHz（大二核），1.6GHz（小二核）</td></tr>
-							<tr><td>GPU型号</td><td>高通 Adreno530</td></tr>
-							<tr><td>处理器位数</td><td>64位</td></tr>
-							<tr><td>RAM容量</td><td>6GB</td></tr>
-							<tr><td>ROM容量</td><td>64GB</td></tr>
-							<tr><td>电池类型</td><td>不可拆卸式电池</td></tr>
-							<tr><td>电池容量</td><td>3000mAh</td></tr>
-							<tr><td>其他硬件参数</td><td>支持快速充电</td></tr>
-
-						 </tbody></table>
-					 </div>
-
-					 <div>
-						<p>摄像头</p>
-						 <table cellspacing="0" cellpadding="" border="1">
-						 	<tbody><tr><td>摄像头</td><td>内置</td></tr>
-							<tr><td>摄像头类型</td><td>双摄像头（前后）</td></tr>
-							<tr><td>后置摄像头</td><td>1600万像素</td></tr>
-							<tr><td>前置摄像头</td><td>800万像素</td></tr>
-							<tr><td>传感器类型</td><td>CMOS</td></tr>
-							<tr><td>闪光灯</td><td>LED补光灯</td></tr>
-							<tr><td>光圈</td><td>主f/2.0，副f/2.0</td></tr>
-							<tr><td>视频拍摄</td><td>4K（3840x2160，30帧/秒）视频录制</td></tr>
-							<tr><td>拍照功能</td><td>OIS光学防抖，EIS电子防抖，相位对焦</td></tr>
-							<tr><td>其他摄像头参数</td><td>索尼IMX298</td></tr>
-
-						 </tbody></table>
-					 </div>
-
-					 <div>
-						<p>外观</p>
-						 <table cellspacing="0" cellpadding="" border="1">
-						 	<tbody><tr><td>造型设计</td><td>直板</td></tr>
-							<tr><td>机身颜色</td><td>薄荷金，冰川灰</td></tr>
-							<tr><td>手机尺寸</td><td>152.7x74.7x7.35mm</td></tr>
-							<tr><td>手机重量</td><td>158g</td></tr>
-							<tr><td>机身材质</td><td>金属机身</td></tr>
-							<tr><td>操作类型</td><td>触控按键</td></tr>
-							<tr><td>感应器类型</td><td>指纹传感器，霍尔感应器，加速度传感器，陀螺仪，距离感应器，环境光传感器，电子罗盘</td></tr>
-							<tr><td>SIM卡类型</td><td>Nano SIM卡</td></tr>
-							<tr><td>机身接口</td><td>3.5mm耳机接口，USB Type-C接口</td></tr>
-
-						 </tbody></table>
-					 </div>
-
-
-					 <div>
-						<p>服务与支持</p>
-						 <table cellspacing="0" cellpadding="" border="1">
-						 	<tbody><tr><td>音频支持</td><td>支持WAV/AAC/AAC+/eAAC+/MP3/WMA/AMR/FLAC/ALAC/APE/AIFF/OGG/MIDI等格式</td></tr>
-							<tr><td>视频支持</td><td>支持HEVC/WMV/AVI/MKV/MOV/3GP/MP4/FLV/HLS等</td></tr>
-							<tr><td>图片支持</td><td>支持JPEG/PNG/GIF/BMP等格式</td></tr>
-							<tr><td>常用功能</td><td>计算器，日程表，记事本，电子书，闹钟，日历，手电筒，录音机，情景模式，主题模式，地图软件</td></tr>
-							<tr><td>服务特色</td><td>声纹识别</td></tr>
-						 </tbody></table>
-					 </div>
-
-
-					 <div>
-						<p>手机附件</p>
-						 <table cellspacing="0" cellpadding="" border="1">
-						 	<tbody><tr><td>包装清单</td><td>主机 x1</td></tr>
-							<tr><td></td><td>数据线 x1</td></tr>
-							<tr><td></td><td>充电器 x1</td></tr>
-							<tr><td></td><td>通针 x1</td></tr>
-							<tr><td></td><td>快速上手指南 x1</td></tr>
-							<tr><td></td><td>产品重要信息与保修卡 x1</td></tr>
-						 </tbody></table>
-					 </div>
-
-
-					 <div>
-						<p>保修信息</p>
-						 <table cellspacing="0" cellpadding="" border="1">
-						 	<tbody><tr><td>保修政策</td><td>全国联保，享受三包服务</td></tr>
-							<tr><td>质保时间</td><td>1年</td></tr>
-							<tr><td>质保备注</td><td>主机1年，充电器1年</td></tr>
-							<tr><td>客服电话</td><td>400-888-1111</td></tr>
-							<tr><td>电话备注</td><td>24小时在线服务</td></tr>
-							<tr><td>详细内容</td><td>自购机日起（以购机发票为准），如因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，30日内换货，30日以上在质保期内享受免费保修等三包服务！注：单独购买手机配件产品的用户，请完好保存配件外包装以及发票原件，如无法提供上述凭证的，将无法进行正常的配件保修或更换。</td></tr>
-
-						 </tbody></table>
-					 </div>
-
-				</div>
-
-
-				<!--产品口碑-->
-				<div class="proKoubei li_bl">
-					<div class="smallTitle">
-						<h4>产品口碑</h4>
-					</div>
-					<!--顾客-->
-					<ul class="listKoubei">
-						<!--<li class="liKoubei">
-							性能给力，运行各类游戏基本无卡顿，多任务流畅，内存占比我使用中最高到达56%，内存基本用不完，不用担心多开问题
-							<span class="spanKoubei" >——最高到达</span>
-
-						</li>-->
-					</ul>
-
-
-				</div>
-
-				<!--消费评价-->
-				<div class="cumPJ">
-					<div class="smallTitle">
-						<h4>消费评价</h4>
-					</div>
-					<div class="pJbox">
-						<div class="oneBox">
-							快来第一个评价吧~
-						</div>
-						<div class="twoBox">
-							<div>
-								我在Z团购买过本单
-								<a href="#">立即评价</a>
-							</div>
-
-
-
-
-						</div>
-
-					</div>
-
-				</div>
-
-
-				<!--包装清单-->
-				<div class="baozhuang li_bl">
-					<div class="smallTitle">
-						<h4>包装清单</h4>
-					</div>
-					<div class="goodsList">
-						主机 x1
-							数据线 x1
-							充电器 x1
-							通针 x1
-							快速上手指南 x1
-							产品重要信息与保修卡 x1
-
-
-					</div>
-
-				</div>
-
-
-				<!--售后服务-->
-				<div class="shouhou li_bl">
-					<div class="smallTitle">
-						<h4>售后服务</h4>
-					</div>
-					<div class="server">
-						自购机日起（或以购机发票为准），如因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，30日内换货，30日以上在质保期内享受免费保修等三包服务
-						<br>
-						全国联保1年受三包服务，主机1年，充电器1年。<br>
-						<br>
-						我们为顾客承诺：我们在发货前会对产品进行严格检查，如您发现产品存在质量问题需要办理退换货，可拨打Z团客服热线400-678-0068，我们会尽快为您办理！
-
-					</div>
-
-				</div>
-
-
-				<!--Z团优势-->
-				<!--    =======轮播== table切换=======-->
-				<div class="sXlunbo">
-					<div class="smallTitle">
-						<h4>Z团优势</h4>
-					</div>
-					<div class="contentLunnbo">
-						<ul class="sXlunbozi">
-							<li class="baKgC">用户口碑<i></i></li>
-							<li>品质保证<i></i></li>
-							<li>省心售后<i></i></li>
-							<li>发展历程<i></i></li>
-						</ul>
-						<ul class="sXlunboimg" id="Zadv">
-							<!--<li><img src="img/product/koubei.jpg"/></li>
-							<li><img src="img/product/baozheng.jpg"/></li>
-							<li><img src="img/product/shouhou.jpg"/></li>
-							<li><img src="img/product/fazhan.jpg"/></li>-->
-						</ul>
-
-					</div>
-
-				</div>
-
-
-				<!--价格声明-->
-				<div class="priceState">
-					<div class="smallTitle">
-						<h4>价格声明</h4>
-					</div>
-					<div class="state">
-						<dl>
-							<dt>购买价：</dt>
-							<dd>购买价为商品的销售价，是您最终决定是否购买商品的依据。</dd>
-						</dl>
-						<dl>
-							<dt>划线价：</dt>
-							<dd>商品展示的划横线价，可能是如官方网站零售价、厂商指导价、厂商建议零售价、销售商门店挂牌价；由于地区、时间的差异性和市场行情波动，可能会与您购物时展示的不一致，该价格仅供您参考。</dd>
-						</dl>
-						<dl>
-							<dt>折扣价：</dt>
-							<dd>折扣指卖家在划线价（如官方网站零售价、厂商指导价、厂商建议零售价、销售商门店挂牌价）等某一价格基础上计算出的优惠比例或优惠金额。</dd>
-						</dl>
-						<dl>
-							<dt>促销价：</dt>
-							<dd>商品促销信息以商品详情页“促销”信息为准；商品的具体售价以订单结算页价格为准；如您发现商品售价或促销信息有异常，建议购买前先联系销售商咨询。</dd>
-						</dl>
-					</div>
-				</div>
-
-				<!--更多商品-->
-				<div class="moreGoods">
-					<h3>看了本商品的人还看了</h3>
-					<ul class="moreGS">
-						<!--<li>
-							<div class="one">
-								<img src="img/product/one.jpg" alt="" />
-								<span>佳能 5D Mark IV(单机)  好评返现30元！ </span>
-								<p>
-									<b>￥21412</b>
-									<span>已售出<i>102</i></span>
-								</p>
-
-							</div>
-						</li>
-						<li>
-							<div class="one">
-								<img src="img/product/one.jpg" alt="" />
-								<span>佳能 5D Mark IV(单机)  好评返现30元！ </span>
-								<p>
-									<b>￥21412</b>
-									<span>已售出<i>102</i></span>
-								</p>
-
-							</div>
-						</li>
-						<li>
-							<div class="one">
-								<img src="img/product/one.jpg" alt="" />
-								<span>佳能 5D Mark IV(单机)  好评返现30元！ </span>
-								<p>
-									<b>￥21412</b>
-									<span>已售出<i>102</i></span>
-								</p>
-
-							</div>
-						</li>
-						<li>
-							<div class="one">
-								<img src="img/product/one.jpg" alt="" />
-								<span>佳能 5D Mark IV(单机)  好评返现30元！ </span>
-								<p>
-									<b>￥21412</b>
-									<span>已售出<i>102</i></span>
-								</p>
-
-							</div>
-						</li>-->
-					</ul>
-
-
-				</div>
-
-			</div>
-
-
-
-			<!--右侧商家介绍  认证-->
-			<div class="right_shop">
-				<!--商家认证-->
-				<div class="shops">
-					<h3><i></i>ZOL商城认证商家</h3>
-					<h5>龙翔通讯专营店</h5>
-					<img src="{% static  'img/product/button_121.gif' %}" title="点这里给我发消息" alt="点这里给我发消息">
-					<p><span>客服电话：</span>028-69589211</p>
-					<p><span>服务时间：</span>9:00-18:00</p>
-					<ul>
-						<li>描述
-							<p><span>5.0</span><em class="em1"></em></p>
-						</li>
-						<li>服务
-							<p><span>5.0</span><em class="em2"></em></p>
-						</li>
-						<li>速度
-							<p><span>5.0</span><em class="em3"></em></p>
-						</li>
-
-					</ul>
-					<div class="hotSale">
-						<p>店铺热卖</p>
-						<ul>
-							<li>
-								<img src="{% static  'img/product/ChMkJleyieqIIAVDAAFvuGZ3fWEAAUedwJ1FgcAAW_Q416.jpg' %}">
-								<div class="desC">
-									<a href="#">【顺丰包邮赠指环支架】魅族 魅蓝Note 3（高配版/公开版全网通）32GB</a>
-									<span>￥1369</span>
-									<p>已售出<b>33</b>笔</p>
-								</div>
-							</li>
-							<li>
-								<img src="{% static  'img/product/ChMkJ1eyiNuIdTS-AAIUVBMUYx0AAUedQHLFEkAAhRs097.jpg' %}">
-								<div class="desC">
-									<a href="#">【顺丰包邮赠指环支架】魅族 魅蓝Note 3（高配版/公开版全网通）32GB</a>
-									<span>￥1369</span>
-									<p>已售出<b>33</b>笔</p>
-								</div>
-							</li>
-
-							<li>
-								<img src="{% static  'img/product/ChMkJ1eyjmSIAMIHAAEapomf6kwAAUegAD8mkQAARq-728.jpg' %}">
-								<div class="desC">
-									<a href="#">【顺丰包邮赠指环支架】魅族 魅蓝Note 3（高配版/公开版全网通）32GB</a>
-									<span>￥1369</span>
-									<p>已售出<b>33</b>笔</p>
-								</div>
-							</li>
-						</ul>
-						<a href="#" id="guang">进店逛逛</a>
-						<a href="#" id="shoucang">收藏本店</a>
-					</div>
-				</div>
-
-				<!--相关产品推荐-->
-				<div class="tuiJian">
-					<h3>相关产品推荐</h3>
-					<ul class="connectCom">
-						<!--<li>
-							<img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
-							<p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
-							<b>¥2249</b><del>2499</del> <span>已售出<i>110</i></span>
-
-						</li>
-						<li>
-							<img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
-							<p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
-							<b>¥2249</b><del>2499</del> <span>已售出<i>110</i></span>
-
-						</li>
-						<li>
-							<img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
-							<p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
-							<b>¥2249</b><del>2499</del> <span>已售出<i>110</i></span>
-
-						</li>
-						<li>
-							<img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
-							<p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
-							<b>¥2249</b><del>2499</del> <span>已售出<i>110</i></span>
-
-						</li>
-						<li>
-							<img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
-							<p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
-							<b>¥2249</b><del>2499</del> <span>已售出<i>110</i></span>
-
-						</li>-->
-					</ul>
-				</div>
-
-				<!--最近浏览--><!--recently browse-->
-				<div class="recentlyBrowse">
-					<p>最近浏览<span>清空全部</span></p>
-					<div class="boxGray">
-						<i class="one"></i><em class="first">1</em>/<em>1</em><i class="two"></i>
-					</div>
-				</div>
-
-
-				<!--大家都在看什么-->
-				<div class="dajiaSee" id="dajiaSeeTop">
-					<h3>大家都在看什么</h3>
-					<ul class="dajiaSeeS">
-						<!--<li>
-							<div>
-								<img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
-								<div>
-									<p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
-								</div>
-							</div>
-
-							<b>¥2249</b><del>2499</del> <span>关注数<i>32314</i></span>
-
-						</li>
-						<li>
-							<div>
-								<img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
-								<div>
-									<p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
-								</div>
-							</div>
-
-							<b>¥2249</b><del>2499</del> <span>关注数<i>32314</i></span>
-
-						</li>
-						<li>
-							<div>
-								<img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
-								<div>
-									<p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
-								</div>
-							</div>
-
-							<b>¥2249</b><del>2499</del> <span>关注数<i>32314</i></span>
-
-						</li>-->
-					</ul>
-				</div>
-			</div>
-		</div>
-		</div>
-		<div style="clear: both;">
-
-		</div>
-
-		<!--官方二维码  左侧-->
-		<div class="erweima">
-			<div class="guan">
-
-			</div>
-			<div class="pigG">
-				<p>官方微信账号</p>
-				<img src="{% static  'img/product/zolDingYue.jpg' %}">
-
-			</div>
-
-		</div>
-
-
-
-		<!--脚部-->
-		<div id="footer_server">
-			<div id="left_list">
-				<ul>
-					<li><h4>购物指南</h4></li>
-					<li>购物流程</li>
-					<li>优惠券红包</li>
-					<li>常见问题</li>
-				</ul>
-				<ul>
-
-					<li><h4>售后服务</h4></li>
-					<li>申请退款</li>
-					<li>售后政策</li>
-					<li>售后问题</li>
-				</ul>
-				<ul>
-					<li><h4>团购特点</h4></li>
-					<li>Z团优势</li>
-					<li>参团效果</li>
-					<li>往期团购</li>
-
-				</ul>
-				<ul>
-					<li><h4>商务合作</h4></li>
-					<li>媒体合作</li>
-					<li>团购合作</li>
-				</ul>
-				<ul>
-					<li><h4>商城服务</h4></li>
-					<li>400-678-0068</li>
-					<li>工作日(9:00-18:00)</li>
-					<li><span></span>关注新浪微博</li>
-				</ul>
-			</div>
-
-			<div id="right_2_code">
-				<img src="{% static  'img/head/zolDingYue.jpg' %}" alt="">
-				<p>微信关注：ZOL商城</p>
-				<p>扫码赢优惠 订单时时查</p>
-			</div>
-		</div>
-		<div id="footer">
-		<div id="footer_partner">
-			<div id="footer_content">
-				<p>
-				<span>合作伙伴：</span>
-				<a href="#">卷皮网</a>|
-				<a href="#">电子商务平台</a>|
-				<a href="#">中国电子银行网</a>|
-				<a href="#">华为商城</a>|
-				<a href="#">三帝贸易网</a>|
-				<a href="#">团购</a>|
-				<a href="#">eNet商城</a>|
-				<a href="#">易趣</a>|
-				<a href="#">家具网</a>|
-				<a href="#">手表品牌大全</a>|
-				<a href="#">钻石</a>|
-				<a href="#">伊秀女性网</a>|
-				<a href="#">华强电子网</a>|
-				</p>
-				<p>
-				&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
-				<a href="#">电子产品世界</a>|
-				<a href="#">挖东西比价网</a>|
-				<a href="#">广告网</a>|
-				<a href="#">易购网</a>
-			</p>
-			<p>
-				<a href="#">中关村在线</a>|
-				<a href="#">ZOL商城</a>|
-				<a href="#">Z团</a>|
-				<a href="#">限时抢购</a>|
-				<a href="#">经销商</a>|
-				<a href="#">产品报价</a>|
-				<a href="#">论坛</a>|
-				<a href="#">问答</a>
-
-			</p>
-			</div>
-			<div id="footer_other">
-			<p>	<a href="#">关于ZOL商城</a>|
-				<a href="#">帮助中心</a>|
-				<a href="#">联系我们</a>|
-				<a href="#">发展历程</a>|
-				<a href="#">媒体报道</a>
-
-			</p>
-			<p>
-				©2016 中关村在线 版权所有. <a href="#">京ICP证150096号</a>   京ICP备14061128号   <a href="#">京公网安备11010802020026号</a>  <a href="#">网络文化经营许可证京网文[2016]1631-199</a>
-				</p>
-			</div>
-			<div id="ad">
-			<a href="#">广告</a>
-			</div>
-
-		</div>
-
-		</div>
-
-
-
-
-
-
-
-    </body>
+                </div>
+
+
+                <div>
+                    <p>基本参数</p>
+                    <table cellspacing="0" cellpadding="" border="1">
+                        <tbody>
+                        <tr>
+                            <td>上市日期</td>
+                            <td>2016年06月</td>
+                        </tr>
+                        <tr>
+                            <td>手机类型</td>
+                            <td>4G手机，3G手机，智能手机，平板手机，拍照手机，快充手机</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <p>屏幕</p>
+                    <table cellspacing="0" cellpadding="" border="1">
+                        <tbody>
+                        <tr>
+                            <td>触摸屏类型</td>
+                            <td>电容屏，多点触控</td>
+                        </tr>
+                        <tr>
+                            <td>主屏尺寸</td>
+                            <td>5.5英寸</td>
+                        </tr>
+                        <tr>
+                            <td>主屏材质</td>
+                            <td>AMOLED</td>
+                        </tr>
+                        <tr>
+                            <td>主屏分辨率</td>
+                            <td>920x1080像素</td>
+                        </tr>
+                        <tr>
+                            <td>屏幕像素密度</td>
+                            <td>401ppi</td>
+                        </tr>
+                        <tr>
+                            <td>屏幕技术</td>
+                            <td>第四代康宁大猩猩玻璃</td>
+                        </tr>
+                        <tr>
+                            <td>窄边框</td>
+                            <td>3.11mm</td>
+                        </tr>
+                        <tr>
+                            <td>屏幕占比</td>
+                            <td>73.11%</td>
+                        </tr>
+                        <tr>
+                            <td>其他屏幕参数</td>
+                            <td>2.5D玻璃</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <p>网络</p>
+                    <table cellspacing="0" cellpadding="" border="1">
+                        <tbody>
+                        <tr>
+                            <td>网络类型</td>
+                            <td>双卡，全网通</td>
+                        </tr>
+                        <tr>
+                            <td>4G网络</td>
+                            <td>移动TD-LTE，联通TD-LTE，联通FDD-LTE，电信TD-LTE，电信FDD-LTE</td>
+                        </tr>
+                        <tr>
+                            <td>3G网络</td>
+                            <td>移动3G（TD-SCDMA），联通3G（WCDMA），电信3G（CDMA2000），联通2G/移动2G（GSM）</td>
+                        </tr>
+                        <tr>
+                            <td>WLAN功能</td>
+                            <td>双频WIFI，IEEE 802.11 a/b/g/n/ac</td>
+                        </tr>
+                        <tr>
+                            <td>导航</td>
+                            <td>GPS导航，GLONASS导航，北斗导航</td>
+                        </tr>
+                        <tr>
+                            <td>连接与共享</td>
+                            <td>NFC，WLAN热点，蓝牙4.2，VoLTE</td>
+                        </tr>
+                        <tr>
+                            <td>其他网络参数</td>
+                            <td>4G+</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <p>硬件</p>
+                    <table cellspacing="0" cellpadding="" border="1">
+                        <tbody>
+                        <tr>
+                            <td>操作系统</td>
+                            <td>H2 OS 1.4（基于Android OS 6.0）</td>
+                        </tr>
+                        <tr>
+                            <td>核心数</td>
+                            <td>四核</td>
+                        </tr>
+                        <tr>
+                            <td>CPU型号</td>
+                            <td>高通 骁龙820（MSM8996）</td>
+                        </tr>
+                        <tr>
+                            <td>CPU频率</td>
+                            <td>2.2GHz（大二核），1.6GHz（小二核）</td>
+                        </tr>
+                        <tr>
+                            <td>GPU型号</td>
+                            <td>高通 Adreno530</td>
+                        </tr>
+                        <tr>
+                            <td>处理器位数</td>
+                            <td>64位</td>
+                        </tr>
+                        <tr>
+                            <td>RAM容量</td>
+                            <td>6GB</td>
+                        </tr>
+                        <tr>
+                            <td>ROM容量</td>
+                            <td>64GB</td>
+                        </tr>
+                        <tr>
+                            <td>电池类型</td>
+                            <td>不可拆卸式电池</td>
+                        </tr>
+                        <tr>
+                            <td>电池容量</td>
+                            <td>3000mAh</td>
+                        </tr>
+                        <tr>
+                            <td>其他硬件参数</td>
+                            <td>支持快速充电</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <p>摄像头</p>
+                    <table cellspacing="0" cellpadding="" border="1">
+                        <tbody>
+                        <tr>
+                            <td>摄像头</td>
+                            <td>内置</td>
+                        </tr>
+                        <tr>
+                            <td>摄像头类型</td>
+                            <td>双摄像头（前后）</td>
+                        </tr>
+                        <tr>
+                            <td>后置摄像头</td>
+                            <td>1600万像素</td>
+                        </tr>
+                        <tr>
+                            <td>前置摄像头</td>
+                            <td>800万像素</td>
+                        </tr>
+                        <tr>
+                            <td>传感器类型</td>
+                            <td>CMOS</td>
+                        </tr>
+                        <tr>
+                            <td>闪光灯</td>
+                            <td>LED补光灯</td>
+                        </tr>
+                        <tr>
+                            <td>光圈</td>
+                            <td>主f/2.0，副f/2.0</td>
+                        </tr>
+                        <tr>
+                            <td>视频拍摄</td>
+                            <td>4K（3840x2160，30帧/秒）视频录制</td>
+                        </tr>
+                        <tr>
+                            <td>拍照功能</td>
+                            <td>OIS光学防抖，EIS电子防抖，相位对焦</td>
+                        </tr>
+                        <tr>
+                            <td>其他摄像头参数</td>
+                            <td>索尼IMX298</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+                <div>
+                    <p>外观</p>
+                    <table cellspacing="0" cellpadding="" border="1">
+                        <tbody>
+                        <tr>
+                            <td>造型设计</td>
+                            <td>直板</td>
+                        </tr>
+                        <tr>
+                            <td>机身颜色</td>
+                            <td>薄荷金，冰川灰</td>
+                        </tr>
+                        <tr>
+                            <td>手机尺寸</td>
+                            <td>152.7x74.7x7.35mm</td>
+                        </tr>
+                        <tr>
+                            <td>手机重量</td>
+                            <td>158g</td>
+                        </tr>
+                        <tr>
+                            <td>机身材质</td>
+                            <td>金属机身</td>
+                        </tr>
+                        <tr>
+                            <td>操作类型</td>
+                            <td>触控按键</td>
+                        </tr>
+                        <tr>
+                            <td>感应器类型</td>
+                            <td>指纹传感器，霍尔感应器，加速度传感器，陀螺仪，距离感应器，环境光传感器，电子罗盘</td>
+                        </tr>
+                        <tr>
+                            <td>SIM卡类型</td>
+                            <td>Nano SIM卡</td>
+                        </tr>
+                        <tr>
+                            <td>机身接口</td>
+                            <td>3.5mm耳机接口，USB Type-C接口</td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div>
+                    <p>服务与支持</p>
+                    <table cellspacing="0" cellpadding="" border="1">
+                        <tbody>
+                        <tr>
+                            <td>音频支持</td>
+                            <td>支持WAV/AAC/AAC+/eAAC+/MP3/WMA/AMR/FLAC/ALAC/APE/AIFF/OGG/MIDI等格式</td>
+                        </tr>
+                        <tr>
+                            <td>视频支持</td>
+                            <td>支持HEVC/WMV/AVI/MKV/MOV/3GP/MP4/FLV/HLS等</td>
+                        </tr>
+                        <tr>
+                            <td>图片支持</td>
+                            <td>支持JPEG/PNG/GIF/BMP等格式</td>
+                        </tr>
+                        <tr>
+                            <td>常用功能</td>
+                            <td>计算器，日程表，记事本，电子书，闹钟，日历，手电筒，录音机，情景模式，主题模式，地图软件</td>
+                        </tr>
+                        <tr>
+                            <td>服务特色</td>
+                            <td>声纹识别</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div>
+                    <p>手机附件</p>
+                    <table cellspacing="0" cellpadding="" border="1">
+                        <tbody>
+                        <tr>
+                            <td>包装清单</td>
+                            <td>主机 x1</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>数据线 x1</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>充电器 x1</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>通针 x1</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>快速上手指南 x1</td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td>产品重要信息与保修卡 x1</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+
+                <div>
+                    <p>保修信息</p>
+                    <table cellspacing="0" cellpadding="" border="1">
+                        <tbody>
+                        <tr>
+                            <td>保修政策</td>
+                            <td>全国联保，享受三包服务</td>
+                        </tr>
+                        <tr>
+                            <td>质保时间</td>
+                            <td>1年</td>
+                        </tr>
+                        <tr>
+                            <td>质保备注</td>
+                            <td>主机1年，充电器1年</td>
+                        </tr>
+                        <tr>
+                            <td>客服电话</td>
+                            <td>400-888-1111</td>
+                        </tr>
+                        <tr>
+                            <td>电话备注</td>
+                            <td>24小时在线服务</td>
+                        </tr>
+                        <tr>
+                            <td>详细内容</td>
+                            <td>
+                                自购机日起（以购机发票为准），如因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，30日内换货，30日以上在质保期内享受免费保修等三包服务！注：单独购买手机配件产品的用户，请完好保存配件外包装以及发票原件，如无法提供上述凭证的，将无法进行正常的配件保修或更换。
+                            </td>
+                        </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+
+
+            <!--产品口碑-->
+            <div class="proKoubei li_bl">
+                <div class="smallTitle">
+                    <h4>产品口碑</h4>
+                </div>
+                <!--顾客-->
+                <ul class="listKoubei">
+                    <!--<li class="liKoubei">
+                        性能给力，运行各类游戏基本无卡顿，多任务流畅，内存占比我使用中最高到达56%，内存基本用不完，不用担心多开问题
+                        <span class="spanKoubei" >——最高到达</span>
+
+                    </li>-->
+                </ul>
+
+
+            </div>
+
+            <!--消费评价-->
+            <div class="cumPJ">
+                <div class="smallTitle">
+                    <h4>消费评价</h4>
+                </div>
+                <div class="pJbox">
+                    <div class="oneBox">
+                        快来第一个评价吧~
+                    </div>
+                    <div class="twoBox">
+                        <div>
+                            我在Z团购买过本单
+                            <a href="#">立即评价</a>
+                        </div>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <!--包装清单-->
+            <div class="baozhuang li_bl">
+                <div class="smallTitle">
+                    <h4>包装清单</h4>
+                </div>
+                <div class="goodsList">
+                    主机 x1
+                    数据线 x1
+                    充电器 x1
+                    通针 x1
+                    快速上手指南 x1
+                    产品重要信息与保修卡 x1
+
+
+                </div>
+
+            </div>
+
+
+            <!--售后服务-->
+            <div class="shouhou li_bl">
+                <div class="smallTitle">
+                    <h4>售后服务</h4>
+                </div>
+                <div class="server">
+                    自购机日起（或以购机发票为准），如因质量问题或故障，凭厂商维修中心或特约维修点的质量检测证明，享受7日内退货，30日内换货，30日以上在质保期内享受免费保修等三包服务
+                    <br>
+                    全国联保1年受三包服务，主机1年，充电器1年。<br>
+                    <br>
+                    我们为顾客承诺：我们在发货前会对产品进行严格检查，如您发现产品存在质量问题需要办理退换货，可拨打Z团客服热线400-678-0068，我们会尽快为您办理！
+
+                </div>
+
+            </div>
+
+
+            <!--Z团优势-->
+            <!--    =======轮播== table切换=======-->
+            <div class="sXlunbo">
+                <div class="smallTitle">
+                    <h4>Z团优势</h4>
+                </div>
+                <div class="contentLunnbo">
+                    <ul class="sXlunbozi">
+                        <li class="baKgC">用户口碑<i></i></li>
+                        <li>品质保证<i></i></li>
+                        <li>省心售后<i></i></li>
+                        <li>发展历程<i></i></li>
+                    </ul>
+                    <ul class="sXlunboimg" id="Zadv">
+                        <!--<li><img src="img/product/koubei.jpg"/></li>
+                        <li><img src="img/product/baozheng.jpg"/></li>
+                        <li><img src="img/product/shouhou.jpg"/></li>
+                        <li><img src="img/product/fazhan.jpg"/></li>-->
+                    </ul>
+
+                </div>
+
+            </div>
+
+
+            <!--价格声明-->
+            <div class="priceState">
+                <div class="smallTitle">
+                    <h4>价格声明</h4>
+                </div>
+                <div class="state">
+                    <dl>
+                        <dt>购买价：</dt>
+                        <dd>购买价为商品的销售价，是您最终决定是否购买商品的依据。</dd>
+                    </dl>
+                    <dl>
+                        <dt>划线价：</dt>
+                        <dd>商品展示的划横线价，可能是如官方网站零售价、厂商指导价、厂商建议零售价、销售商门店挂牌价；由于地区、时间的差异性和市场行情波动，可能会与您购物时展示的不一致，该价格仅供您参考。
+                        </dd>
+                    </dl>
+                    <dl>
+                        <dt>折扣价：</dt>
+                        <dd>折扣指卖家在划线价（如官方网站零售价、厂商指导价、厂商建议零售价、销售商门店挂牌价）等某一价格基础上计算出的优惠比例或优惠金额。</dd>
+                    </dl>
+                    <dl>
+                        <dt>促销价：</dt>
+                        <dd>商品促销信息以商品详情页“促销”信息为准；商品的具体售价以订单结算页价格为准；如您发现商品售价或促销信息有异常，建议购买前先联系销售商咨询。</dd>
+                    </dl>
+                </div>
+            </div>
+
+            <!--更多商品-->
+            <div class="moreGoods">
+                <h3>看了本商品的人还看了</h3>
+                <ul class="moreGS">
+                    <!--<li>
+                        <div class="one">
+                            <img src="img/product/one.jpg" alt="" />
+                            <span>佳能 5D Mark IV(单机)  好评返现30元！ </span>
+                            <p>
+                                <b>￥21412</b>
+                                <span>已售出<i>102</i></span>
+                            </p>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="one">
+                            <img src="img/product/one.jpg" alt="" />
+                            <span>佳能 5D Mark IV(单机)  好评返现30元！ </span>
+                            <p>
+                                <b>￥21412</b>
+                                <span>已售出<i>102</i></span>
+                            </p>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="one">
+                            <img src="img/product/one.jpg" alt="" />
+                            <span>佳能 5D Mark IV(单机)  好评返现30元！ </span>
+                            <p>
+                                <b>￥21412</b>
+                                <span>已售出<i>102</i></span>
+                            </p>
+
+                        </div>
+                    </li>
+                    <li>
+                        <div class="one">
+                            <img src="img/product/one.jpg" alt="" />
+                            <span>佳能 5D Mark IV(单机)  好评返现30元！ </span>
+                            <p>
+                                <b>￥21412</b>
+                                <span>已售出<i>102</i></span>
+                            </p>
+
+                        </div>
+                    </li>-->
+                </ul>
+
+
+            </div>
+
+        </div>
+
+
+        <!--右侧商家介绍  认证-->
+        <div class="right_shop">
+            <!--商家认证-->
+            <div class="shops">
+                <h3><i></i>ZOL商城认证商家</h3>
+                <h5>龙翔通讯专营店</h5>
+                <img src="{% static  'img/product/button_121.gif' %}" title="点这里给我发消息" alt="点这里给我发消息">
+                <p><span>客服电话：</span>028-69589211</p>
+                <p><span>服务时间：</span>9:00-18:00</p>
+                <ul>
+                    <li>描述
+                        <p><span>5.0</span><em class="em1"></em></p>
+                    </li>
+                    <li>服务
+                        <p><span>5.0</span><em class="em2"></em></p>
+                    </li>
+                    <li>速度
+                        <p><span>5.0</span><em class="em3"></em></p>
+                    </li>
+
+                </ul>
+                <div class="hotSale">
+                    <p>店铺热卖</p>
+                    <ul>
+                        <li>
+                            <img src="{% static  'img/product/ChMkJleyieqIIAVDAAFvuGZ3fWEAAUedwJ1FgcAAW_Q416.jpg' %}">
+                            <div class="desC">
+                                <a href="#">【顺丰包邮赠指环支架】魅族 魅蓝Note 3（高配版/公开版全网通）32GB</a>
+                                <span>￥1369</span>
+                                <p>已售出<b>33</b>笔</p>
+                            </div>
+                        </li>
+                        <li>
+                            <img src="{% static  'img/product/ChMkJ1eyiNuIdTS-AAIUVBMUYx0AAUedQHLFEkAAhRs097.jpg' %}">
+                            <div class="desC">
+                                <a href="#">【顺丰包邮赠指环支架】魅族 魅蓝Note 3（高配版/公开版全网通）32GB</a>
+                                <span>￥1369</span>
+                                <p>已售出<b>33</b>笔</p>
+                            </div>
+                        </li>
+
+                        <li>
+                            <img src="{% static  'img/product/ChMkJ1eyjmSIAMIHAAEapomf6kwAAUegAD8mkQAARq-728.jpg' %}">
+                            <div class="desC">
+                                <a href="#">【顺丰包邮赠指环支架】魅族 魅蓝Note 3（高配版/公开版全网通）32GB</a>
+                                <span>￥1369</span>
+                                <p>已售出<b>33</b>笔</p>
+                            </div>
+                        </li>
+                    </ul>
+                    <a href="#" id="guang">进店逛逛</a>
+                    <a href="#" id="shoucang">收藏本店</a>
+                </div>
+            </div>
+
+            <!--相关产品推荐-->
+            <div class="tuiJian">
+                <h3>相关产品推荐</h3>
+                <ul class="connectCom">
+                    <!--<li>
+                        <img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
+                        <p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
+                        <b>¥2249</b><del>2499</del> <span>已售出<i>110</i></span>
+
+                    </li>
+                    <li>
+                        <img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
+                        <p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
+                        <b>¥2249</b><del>2499</del> <span>已售出<i>110</i></span>
+
+                    </li>
+                    <li>
+                        <img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
+                        <p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
+                        <b>¥2249</b><del>2499</del> <span>已售出<i>110</i></span>
+
+                    </li>
+                    <li>
+                        <img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
+                        <p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
+                        <b>¥2249</b><del>2499</del> <span>已售出<i>110</i></span>
+
+                    </li>
+                    <li>
+                        <img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
+                        <p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
+                        <b>¥2249</b><del>2499</del> <span>已售出<i>110</i></span>
+
+                    </li>-->
+                </ul>
+            </div>
+
+            <!--最近浏览--><!--recently browse-->
+            <div class="recentlyBrowse">
+                <p>最近浏览<span>清空全部</span></p>
+                <div class="boxGray">
+                    <i class="one"></i><em class="first">1</em>/<em>1</em><i class="two"></i>
+                </div>
+            </div>
+
+
+            <!--大家都在看什么-->
+            <div class="dajiaSee" id="dajiaSeeTop">
+                <h3>大家都在看什么</h3>
+                <ul class="dajiaSeeS">
+                    <!--<li>
+                        <div>
+                            <img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
+                            <div>
+                                <p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
+                            </div>
+                        </div>
+
+                        <b>¥2249</b><del>2499</del> <span>关注数<i>32314</i></span>
+
+                    </li>
+                    <li>
+                        <div>
+                            <img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
+                            <div>
+                                <p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
+                            </div>
+                        </div>
+
+                        <b>¥2249</b><del>2499</del> <span>关注数<i>32314</i></span>
+
+                    </li>
+                    <li>
+                        <div>
+                            <img src="img/product/ChMkJ1ft8-eIZRZOAABv81kKQ88AAWfGAGF_MEAAHAL415.jpg"/>
+                            <div>
+                                <p>乐视 乐Pro 3（6GB/全网通）新品限量开团！</p>
+                            </div>
+                        </div>
+
+                        <b>¥2249</b><del>2499</del> <span>关注数<i>32314</i></span>
+
+                    </li>-->
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<div style="clear: both;">
+
+</div>
+
+<!--官方二维码  左侧-->
+<div class="erweima">
+    <div class="guan">
+
+    </div>
+    <div class="pigG">
+        <p>官方微信账号</p>
+        <img src="{% static  'img/product/zolDingYue.jpg' %}">
+
+    </div>
+
+</div>
+
+
+<!--脚部-->
+<div id="footer_server">
+    <div id="left_list">
+        <ul>
+            <li><h4>购物指南</h4></li>
+            <li>购物流程</li>
+            <li>优惠券红包</li>
+            <li>常见问题</li>
+        </ul>
+        <ul>
+
+            <li><h4>售后服务</h4></li>
+            <li>申请退款</li>
+            <li>售后政策</li>
+            <li>售后问题</li>
+        </ul>
+        <ul>
+            <li><h4>团购特点</h4></li>
+            <li>Z团优势</li>
+            <li>参团效果</li>
+            <li>往期团购</li>
+
+        </ul>
+        <ul>
+            <li><h4>商务合作</h4></li>
+            <li>媒体合作</li>
+            <li>团购合作</li>
+        </ul>
+        <ul>
+            <li><h4>商城服务</h4></li>
+            <li>400-678-0068</li>
+            <li>工作日(9:00-18:00)</li>
+            <li><span></span>关注新浪微博</li>
+        </ul>
+    </div>
+
+    <div id="right_2_code">
+        <img src="{% static  'img/head/zolDingYue.jpg' %}" alt="">
+        <p>微信关注：ZOL商城</p>
+        <p>扫码赢优惠 订单时时查</p>
+    </div>
+</div>
+<div id="footer">
+    <div id="footer_partner">
+        <div id="footer_content">
+            <p>
+                <span>合作伙伴：</span>
+                <a href="#">卷皮网</a>|
+                <a href="#">电子商务平台</a>|
+                <a href="#">中国电子银行网</a>|
+                <a href="#">华为商城</a>|
+                <a href="#">三帝贸易网</a>|
+                <a href="#">团购</a>|
+                <a href="#">eNet商城</a>|
+                <a href="#">易趣</a>|
+                <a href="#">家具网</a>|
+                <a href="#">手表品牌大全</a>|
+                <a href="#">钻石</a>|
+                <a href="#">伊秀女性网</a>|
+                <a href="#">华强电子网</a>|
+            </p>
+            <p>
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="#">电子产品世界</a>|
+                <a href="#">挖东西比价网</a>|
+                <a href="#">广告网</a>|
+                <a href="#">易购网</a>
+            </p>
+            <p>
+                <a href="#">中关村在线</a>|
+                <a href="#">ZOL商城</a>|
+                <a href="#">Z团</a>|
+                <a href="#">限时抢购</a>|
+                <a href="#">经销商</a>|
+                <a href="#">产品报价</a>|
+                <a href="#">论坛</a>|
+                <a href="#">问答</a>
+
+            </p>
+        </div>
+        <div id="footer_other">
+            <p><a href="#">关于ZOL商城</a>|
+                <a href="#">帮助中心</a>|
+                <a href="#">联系我们</a>|
+                <a href="#">发展历程</a>|
+                <a href="#">媒体报道</a>
+
+            </p>
+            <p>
+                ©2016 中关村在线 版权所有. <a href="#">京ICP证150096号</a> 京ICP备14061128号 <a href="#">京公网安备11010802020026号</a> <a
+                    href="#">网络文化经营许可证京网文[2016]1631-199</a>
+            </p>
+        </div>
+        <div id="ad">
+            <a href="#">广告</a>
+        </div>
+
+    </div>
+
+</div>
+
+
+</body>
 </html>

@@ -5,7 +5,7 @@
 	text-decoration: none;
 	font-family: "微软雅黑";
 	outline: none;
-	
+
 }
 body{
 	min-width: 1263px;
@@ -14,8 +14,8 @@ body{
 	width: 80%;
 	margin: 20px auto;
 	overflow: hidden;
-	
-		
+
+
 }
 .top .logo{
 	width: 800px;
@@ -57,7 +57,7 @@ body{
 
 	margin-top: 30px;
 	border: 1px solid #E6E6E6;
-	
+
 	/*margin-left: 100px;*/
 }
 .content .title {
@@ -84,7 +84,7 @@ body{
 .content .zhuce .list{
 	width: 500px;
 	overflow: hidden;
-	margin-bottom: 30px;	
+	margin-bottom: 30px;
 }
 .content .zhuce .list li{
 	float: left;
@@ -96,7 +96,7 @@ body{
 	font-size: 18px;
 }
 .content .zhuce .list li:first-child{
-	
+
 	border-top: 2px solid #c00;
 	border-left: 1px solid #E6E6E6;
 	border-right: 1px solid #E6E6E6;
@@ -105,7 +105,7 @@ body{
 }
 .content .zhuce .list li:last-child{
 	border-bottom: 1px solid #E6E6E6;
-	
+
 }
 .content .zhuce .list li i{
 	display: inline-block;
@@ -113,14 +113,14 @@ body{
 	height: 30px;
 	    vertical-align: top;
 	background: url(../img/register/login-bg.png) no-repeat -147px -235px;
-	
+
 }
 .content .zhuce .xinxi{
 	width: 500px;
 	/*float: left;*/
 	margin-top: 10px;
 	position: relative;
-	
+
 }
 
 .content .zhuce .xinxi label{
@@ -150,7 +150,7 @@ body{
 .content .zhuce .xinxi .code1{
 	width: 100px;
 	height: 38px;
-	
+
 	position: absolute;
 	right: 145px;
 	top: 0;
@@ -166,7 +166,7 @@ body{
 	font-size: 20px;
 	color: #c40;
 	font-style: oblique;
-	
+
 }
 .aStyle1{
 	text-decoration: underline;
@@ -198,7 +198,7 @@ body{
 	left: 390px;
 	padding: 0 0 0 20px;
 	font: 12px/40px "Arial";
-	color: #ff3333;	
+	color: #ff3333;
 	white-space: nowrap;
 }
 /*第一个验证码的正确提示*/
@@ -250,9 +250,9 @@ body{
 	left: 380px;
 	padding: 0 0 0 20px;
 	font: 12px/40px "Arial";
-	color: #ff3333;	
+	color: #ff3333;
 	white-space: nowrap;
-	
+
 }
 .wrong_tip{
 	display: inline-block;
@@ -300,12 +300,12 @@ body{
 	color: #666;
 	font-size: 12px;
 	line-height: 1.5em;
-	padding: 0 40px;	
+	padding: 0 40px;
 	border-left: 1px solid #E6E6E6;
 }
 .lianjie p{
 	margin-bottom: 20px;
-	
+
 }
 .lianjie p a{
 	color: #000080;
@@ -363,7 +363,7 @@ body{
 	margin-left: 10%;
 	padding-top: 20px;
 
-	
+
 }
 .footer ul li{
 	float: left;
