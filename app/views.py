@@ -19,7 +19,7 @@ from django.shortcuts import render, redirect
 
 # Create your views here.
 from Django_Zmall import settings
-from app.models import User, Imgsrc, Cart
+from app.models import User, Imgsrc, Cart, Generate_order, Orderdetail
 
 
 def generate_token():
@@ -213,7 +213,7 @@ def chacklogin(request):
 
     return HttpResponse("登录成功")
 
-
+# 校验账号密码
 def chack(request):
     tel = request.GET.get('tel')
     print(tel)
@@ -233,7 +233,7 @@ def chack(request):
     else:
         return JsonResponse({'status': -1,'msg':'账号错误'})
 
-
+# 增加商品
 def addcart(request):
     token = request.session.get('token')
     if token:
@@ -270,7 +270,7 @@ def addcart(request):
         }
         return JsonResponse(JsonData)
 
-
+# 减少商品
 def subcart(request):
     token = request.session.get('token')
     user = User.objects.get(token=token)
@@ -278,6 +278,8 @@ def subcart(request):
     goddsid = Imgsrc.objects.get(pk=goodsid)
     cart = Cart.objects.get(goodsid=goddsid)
     cart.number = cart.number-1
+    if cart.number == 0:
+        cart.isselect = False
     cart.save()
     JsonData = {
         'status':1,
@@ -286,10 +288,50 @@ def subcart(request):
     }
     return JsonResponse(JsonData)
 
-
+# 生成订单
 def generateorder(request):
-    return
+    token = request.session.get('token')
+    user = User.objects.get(token=token)
+    order = Generate_order()
+    order.orderNum = str(int(time.time()))+str(random.randrange(100000,10000000))
+    order.user = user
+    order.save()
+    carts = Cart.objects.filter(user=user)
+    for cart in carts:
+        if cart.isselect == True:
+            orderinfo = Orderdetail()
+            orderinfo.orderNum = order
+            orderinfo.goods = cart.goodsid
+            orderinfo.goodsNum = cart.number
+            orderinfo.isselect = True
+            orderinfo.save()
+
+            cart.delete()
+    return  JsonResponse({'status':1,'msg':'未付款','orderNum':order.orderNum})
 
 
 def orderdetail(request):
-    return None
+    token = request.session.get('token')
+    user = User.objects.get(token=token)
+    order = Generate_order.objects.filter(user=user).last()
+    goodslist = Orderdetail.objects.filter(orderNum=order)
+    orderNum = order.orderNum
+
+    return render(request,'order.html',context={'goodslist':goodslist,'name':user.username,'orderNum':orderNum})
+
+
+def changestatus(request):
+    status = request.GET.get('status')
+    imggoodsid = request.GET.get('goodsid')
+    goodsid = Imgsrc.objects.get(pk=imggoodsid)
+    cart = Cart.objects.get(goodsid=goodsid)
+    if status == 'true':
+        cart.isselect = True
+    else:
+        cart.isselect = False
+    cart.save()
+    JsonData = {
+        'status':1,
+        'isselect':cart.isselect
+    }
+    return JsonResponse(JsonData)

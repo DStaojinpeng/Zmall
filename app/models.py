@@ -34,8 +34,8 @@ class Generate_order(models.Model):
     orderNum = models.CharField(max_length=256)
     orderStatus = models.IntegerField(default=1)
     user = models.ForeignKey(User)
-    price = models.IntegerField()
-    count = models.IntegerField()
+    price = models.IntegerField(default=1)
+    count = models.IntegerField(default=1)
 
 
 class Orderdetail(models.Model):

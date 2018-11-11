@@ -1,18 +1,19 @@
 $(function(){
-
 	$('#addcart').click(function () {
 		var goodsid = $(this).attr('goodsid')
+		var $that = $(this)
 		console.log(goodsid)
 		$.get('/addcart/',{'goodsid':goodsid},function (response) {
 			console.log(response)
 			if(response.status==1)
 			{
-
+				$that.next().css('color','red').html('添加到购物车成功！')
 			}
 			else
 			{
 				window.open('/login/',target='_self')
 			}
+
         })
     })
 

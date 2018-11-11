@@ -3,13 +3,23 @@ $(function () {
     //
     // })
     //加操作
-     countTotal()
+    check()
+    total()
+    countTotal()
+    $('.ulgoodlist .store').click(function () {
+        var status = $(this).find("input[type='checkbox']").is(':checked')
+        var goodsid = $(this).find("input").attr('goodsid')
+        var $that = $(this)
+        $.get('/changestatus/',{'status':status,'goodsid':goodsid},function (response) {
+            // console.log(response)
+        })
+    })
     $('.classNumD .numB').click(function () {
         var $that = $(this)
-        console.log($(this).attr('goodsid'))
+        // console.log($(this).attr('goodsid'))
         var goodsid = $(this).attr('goodsid')
         $.get('/addcart/', {'goodsid': goodsid}, function (response) {
-            console.log(response)
+            // console.log(response)
             if (response.status == 1) {
                 $that.prev().attr('value', response.number)
                 total()
@@ -24,7 +34,7 @@ $(function () {
         var num = $that.next().attr('value')
         if (num > 0) {
             $.get('/subcart/', {'goodsid': goodsid}, function (response) {
-                console.log(response)
+                // console.log(response)
                 if (response.status == 1) {
                     $that.next().attr('value', response.number)
                     total()
@@ -37,7 +47,7 @@ $(function () {
     $('.godS .ulgoodlist .store').click(function () {
         countTotal()
     })
-
+    //单个商品总价
     function total() {
         $('.godS .ulgoodlist').each(function () {
             var total = 0
@@ -49,7 +59,7 @@ $(function () {
         })
 
     }
-
+    //总价
     function countTotal() {
         var sumprice = 0
         var sumcount = 0
@@ -68,8 +78,25 @@ $(function () {
         $('.rightT').find('h4').html('￥'+ sumprice)
     }
 
-    $('.rightT #btnE').click(function () {
+    function check(){
+        $('.godS .ulgoodlist').each(function () {
+            var status = $(this).attr('isselect')
+            if (status == 'True')
+            {
 
+                $(this).find("input[type='checkbox']").prop('checked',true)
+
+            }
+        })
+    }
+    $('.rightT #btnE').click(function () {
+        $.get('/generateorder/',function (response) {
+            console.log(response)
+            if (response.status==1)
+            {
+                window.open('/orderdetail/',target="_self")
+            }
+        })
     })
 })
 

@@ -1,201 +1,200 @@
 {% load static %}
 <!DOCTYPE html>
 <html>
-	<head>
-		<meta charset="UTF-8">
-		<title>购物车</title>
-		<link rel="stylesheet" type="text/css" href="{% static 'css/car.css' %}"/>
-		<script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
-		<script src="{% static 'js/car.js' %}" type="text/javascript" charset="utf-8"></script>
-{#        <script src="{% static 'js/text.js' %}" type="text/javascript" charset="utf-8"></script>#}
-	</head>
-	<body>
+<head>
+    <meta charset="UTF-8">
+    <title>购物车</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'css/car.css' %}"/>
+    <script src="{% static 'js/jquery-1.12.3.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/jquery.cookie.js' %}" type="text/javascript" charset="utf-8"></script>
+    <script src="{% static 'js/car.js' %}" type="text/javascript" charset="utf-8"></script>
+    {#        <script src="{% static 'js/text.js' %}" type="text/javascript" charset="utf-8"></script>#}
+</head>
+<body>
 
-		<div class="touY">
-			<div class="neiR">
-				您确定删除这件商品
-				<input type="button" name="" id="ensureD" value="确定">
-				<input type="button" name="" id="cancelD" value="取消">
-			</div>
-		</div>
-		<!--头部-->
-		<div class="header">
-			<ul class="header_list1">
-				<li>ZOL商城<i></i></li>
-				<li>收藏订阅<i></i></li>
-				<li>团购推荐<em></em><i></i></li>
-				<li class="last">客服电话：<span>400-678-0068</span></li>
+<div class="touY">
+    <div class="neiR">
+        您确定删除这件商品
+        <input type="button" name="" id="ensureD" value="确定">
+        <input type="button" name="" id="cancelD" value="取消">
+    </div>
+</div>
+<!--头部-->
+<div class="header">
+    <ul class="header_list1">
+        <li>ZOL商城<i></i></li>
+        <li>收藏订阅<i></i></li>
+        <li>团购推荐<em></em><i></i></li>
+        <li class="last">客服电话：<span>400-678-0068</span></li>
 
-			</ul>
+    </ul>
 
-			<ul class="header_list2">
-				<li class="first"><b>{{ name }}</b><a href="{% url 'app:logout' %}">[退出]</a><i></i></li>
-{#				<li class="secode"><b>退出</b><i></i></li>#}
-				<li>我的订单</li>
-			</ul>
-		</div>
-		<div class="logo">
-			<img src="{% static  'img/car/zol-logo.png' %}">
-			<ul class="step">
-				<li class="step1">
-					<span></span>
-					<i>1</i>
+    <ul class="header_list2">
+        <li class="first"><b>{{ name }}</b><a href="{% url 'app:logout' %}">[退出]</a><i></i></li>
+        {#				<li class="secode"><b>退出</b><i></i></li>#}
+        <li>我的订单</li>
+    </ul>
+</div>
+<div class="logo">
+    <img src="{% static  'img/car/zol-logo.png' %}">
+    <ul class="step">
+        <li class="step1">
+            <span></span>
+            <i>1</i>
 
-					1.核对商品信息
-				</li>
-				<li class="step2">
-					<span></span>
-					<i>2</i>
-					2.填写核对订单信息
-				</li>
-				<li class="step3">
-					<span></span>
-					<i>3</i>
-					3.成功提交订单
-				</li>
-			</ul>
-		</div>
+            1.核对商品信息
+        </li>
+        <li class="step2">
+            <span></span>
+            <i>2</i>
+            2.填写核对订单信息
+        </li>
+        <li class="step3">
+            <span></span>
+            <i>3</i>
+            3.成功提交订单
+        </li>
+    </ul>
+</div>
 
-		<div class="content">
-			<h3>选择商品的类型和数量</h3>
-			<ul class="ulHead">
-				<li class="goods">商品</li>
-				<li class="price">单价（元）</li>
-				<li class="classNum">类型和数量</li>
-				<li class="allPrice">总价（元）</li>
-				<li class="store">操作(选中)</li>
-			</ul>
-
-            
-			<!--商品的购买的信息 列表汇总-->
-			<div class="godS">
-                {% for cart in carts %}
-                <ul class="ulgoodlist">
-                    <li class="goods">
-                        <img src="{% static cart.goodsid.src%}" alt="">
-                        <h5>{{ cart.goodsid.discribe }}</h5>
-                    </li>
-                    <li class="price" price="{{ cart.goodsid.price }}">{{ cart.goodsid.price }}</li>
-                    <li class="classNum">
-                        <div class="classNumD">
-                            <input type="button" class="numA" id="minus" value="-" goodsid="{{ cart.goodsid.id }}"/>
-                            <input type="text" id="disT" class="numT" value="{{ cart.number }}" />
-                            <input type="button" class="numB" id="plus" value="+"  goodsid="{{ cart.goodsid.id }}"/>
-                        </div>
-                    </li>
-                    <li class="allPriceT">{{ cart.goodsid.price }}</li>
-                    <li class="store"><input type="checkbox" name="select"></li>
-                </ul>
-            {% endfor %}
-            </div>
-{#				<ul class="ulgoodlist">#}
-{#				<li class="goods">#}
-{#					<img src="img/car/ChMkJlfI9bSIIka3AACuFP1e8ysAAU66QJ5cLgAAK4s597.jpg"/>#}
-{#					<h5><a href="#">魅族MX6（32G/全网通/香槟金）</a></h5>#}
-{#				</li>#}
-{#				<li class="price">1499</li>#}
-{#				<li class="classNum">#}
-{#					<div class="classNumD">#}
-{#						<input type="button" class="numB" id="minus" value="-" />#}
-{#					<input type="text" id="disT" class="numT" value="1" />#}
-{#					<input type="button" class="numB" id="plus" value="+" />#}
-{#					</div>#}
-{##}
-{#				</li>#}
-{#				<li class="allPrice">1499</li>#}
-{#				<li class="store">有货</li>#}
-{#			</ul>#}
+<div class="content">
+    <h3>选择商品的类型和数量</h3>
+    <ul class="ulHead">
+        <li class="goods">商品</li>
+        <li class="price">单价（元）</li>
+        <li class="classNum">类型和数量</li>
+        <li class="allPrice">总价（元）</li>
+        <li class="store">操作(选中)</li>
+    </ul>
 
 
+    <!--商品的购买的信息 列表汇总-->
+    <div class="godS">
+        {% for cart in carts %}
+            {#                    {% ifequal cart.isselect True %}#}
+            <ul class="ulgoodlist" isselect="{{ cart.isselect }}">
+                <li class="goods">
+                    <img src="{% static cart.goodsid.src %}" alt="">
+                    <h5>{{ cart.goodsid.title }}</h5>
+                </li>
+                <li class="price" price="{{ cart.goodsid.price }}">{{ cart.goodsid.price }}</li>
+                <li class="classNum">
+                    <div class="classNumD">
+                        <input type="button" class="numA" id="minus" value="-" goodsid="{{ cart.goodsid.id }}"/>
+                        <input type="text" id="disT" class="numT" value="{{ cart.number }}"/>
+                        <input type="button" class="numB" id="plus" value="+" goodsid="{{ cart.goodsid.id }}"/>
+                    </div>
+                </li>
+                <li class="allPriceT">{{ cart.goodsid.price }}</li>
+                <li class="store"><input type="checkbox" name="select" goodsid="{{ cart.goodsid.id }}"></li>
+            </ul>
+            {#                    {% endifequal %}#}
+        {% endfor %}
+    </div>
+    {#				<ul class="ulgoodlist">#}
+    {#				<li class="goods">#}
+    {#					<img src="img/car/ChMkJlfI9bSIIka3AACuFP1e8ysAAU66QJ5cLgAAK4s597.jpg"/>#}
+    {#					<h5><a href="#">魅族MX6（32G/全网通/香槟金）</a></h5>#}
+    {#				</li>#}
+    {#				<li class="price">1499</li>#}
+    {#				<li class="classNum">#}
+    {#					<div class="classNumD">#}
+    {#						<input type="button" class="numB" id="minus" value="-" />#}
+    {#					<input type="text" id="disT" class="numT" value="1" />#}
+    {#					<input type="button" class="numB" id="plus" value="+" />#}
+    {#					</div>#}
+    {##}
+    {#				</li>#}
+    {#				<li class="allPrice">1499</li>#}
+    {#				<li class="store">有货</li>#}
+    {#			</ul>#}
 
 
-			<div class="rightTotal">
-				<i class="allNum"></i>件商品，总商品金额：<span id="tPrice">￥</span>
-			</div>
-			<div class="bottomTotal">
-				<a href="">&lt;&lt;返回查看商品详情</a>
-				<div class="rightT">
-					合计：<h4>￥00.00</h4>
-					<input type="button" id="btnE" value="确 定 ">
-				</div>
-			</div>
+    <div class="rightTotal">
+        <i class="allNum"></i>件商品，总商品金额：<span id="tPrice">￥</span>
+    </div>
+    <div class="bottomTotal">
+        <a href="">&lt;&lt;返回查看商品详情</a>
+        <div class="rightT">
+            合计：<h4>￥00.00</h4>
+            <input type="button" id="btnE" value="确 定 ">
+        </div>
+    </div>
 
-		</div>
-
-
-
-		<!--footer-->
-		<div class="footerAll">
+</div>
 
 
-		<div class="footer">
-				<div class="div1">
-					<p>帮助中心</p>
-					<ul>
-						<li>购物指南</li>
-						<li>优惠券红包</li>
-						<li>常见问题</li>
-						<li>售后服务</li>
-					</ul>
-				</div>
-				<div class="div1">
-					<p>手机版Z团</p>
-					<ul>
-						<li>iPhone客户端</li>
-
-					</ul>
-				</div>
-				<div class="div1">
-					<p>关注Z团</p>
-					<ul>
-						<li>Z团新浪微博</li>
-						<li>Z团腾讯微博</li>
-
-					</ul>
-				</div>
-				<div class="div1">
-					<p>商务合作</p>
-					<ul>
-						<li>媒体合作</li>
-
-					</ul>
-				</div>
-				<div class="div1">
-					<p>公司信息</p>
-					<ul>
-						<li>关于中关村在线</li>
-
-					</ul>
-				</div>
-				<div class="divLast">
-					<p>客服电话</p>
-					<span>400-678-0068</span>
-   					<i>周一至周日 9:00 - 18:00</i>
-				</div>
-
-			</div>
-			<div class="footer1">
-				<div class="copy">
-					©2016 中关村在线 版权所有.
-				</div>
-				<div class="al">
-					<a href="#">ZOL简介</a>
-					<a href="#">ZOL历程</a>
-					<a href="#">广告服务</a>
-					<a href="#">招聘(10月)</a>
-					<a href="#">互动营销</a>
-					<a href="#">品牌大全</a>
-					<a href="#">站点地图</a>
-					<a href="#">联系方式</a>
-					<a href="#">RSS订阅</a>
-					<a href="#">反馈/纠错</a>
-
-				</div>
-
-			</div>
-			</div>
+<!--footer-->
+<div class="footerAll">
 
 
-    </body>
+    <div class="footer">
+        <div class="div1">
+            <p>帮助中心</p>
+            <ul>
+                <li>购物指南</li>
+                <li>优惠券红包</li>
+                <li>常见问题</li>
+                <li>售后服务</li>
+            </ul>
+        </div>
+        <div class="div1">
+            <p>手机版Z团</p>
+            <ul>
+                <li>iPhone客户端</li>
+
+            </ul>
+        </div>
+        <div class="div1">
+            <p>关注Z团</p>
+            <ul>
+                <li>Z团新浪微博</li>
+                <li>Z团腾讯微博</li>
+
+            </ul>
+        </div>
+        <div class="div1">
+            <p>商务合作</p>
+            <ul>
+                <li>媒体合作</li>
+
+            </ul>
+        </div>
+        <div class="div1">
+            <p>公司信息</p>
+            <ul>
+                <li>关于中关村在线</li>
+
+            </ul>
+        </div>
+        <div class="divLast">
+            <p>客服电话</p>
+            <span>400-678-0068</span>
+            <i>周一至周日 9:00 - 18:00</i>
+        </div>
+
+    </div>
+    <div class="footer1">
+        <div class="copy">
+            ©2016 中关村在线 版权所有.
+        </div>
+        <div class="al">
+            <a href="#">ZOL简介</a>
+            <a href="#">ZOL历程</a>
+            <a href="#">广告服务</a>
+            <a href="#">招聘(10月)</a>
+            <a href="#">互动营销</a>
+            <a href="#">品牌大全</a>
+            <a href="#">站点地图</a>
+            <a href="#">联系方式</a>
+            <a href="#">RSS订阅</a>
+            <a href="#">反馈/纠错</a>
+
+        </div>
+
+    </div>
+</div>
+
+
+</body>
 </html>

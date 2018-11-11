@@ -19,5 +19,6 @@ urlpatterns = [
     url(r'^subcart/$',views.subcart,name='subcart'),
     url(r'^generateorder/$',views.generateorder,name='generateorder'),
     url(r'^orderdetail/$',views.orderdetail,name='orderdetail'),
-    url(r'^readjson/$',views.readjson,name="readjson")
+    url(r'^readjson/$',views.readjson,name="readjson"),
+    url(r'^changestatus/$',views.changestatus,name='changestatus')
 ]
